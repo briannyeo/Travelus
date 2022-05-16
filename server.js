@@ -21,7 +21,7 @@ app.use(express.json()); //to access req.body
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
 }
-console.log(__dirname);
+console.log("dirname:", __dirname);
 
 //****************ROUTES***************//
 // app.use('/daybits/journal', journalController);
