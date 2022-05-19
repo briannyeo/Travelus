@@ -7,39 +7,73 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+//Modeling database
 model User {
-  id             Int           @id @default(autoincrement())
-  username       String        @db.VarChar(255)
-  password       String        @db.VarChar(255)
-  location_based String        @db.VarChar(255)
-  description    String
-  rating         Float         @db.Real
-  jobs           Jobs[]
-  itineraries    Itineraries[]
-
+  id                     Int                 @id @default(autoincrement())
+  username               String              @db.VarChar(255)
+  password               String              @db.VarChar(255)
+  location_based         String              @db.VarChar(255)
+  description            String
+  image                  String?
+  jobs                   Jobs[]
+  itineraries            Int[]
+  favourited_itineraries UserOnItineraries[]
+  user_comments          Comments[]
+  rating                 Rating[]
+  itineraries_requested  Itineraries[]
 }
 
 model Jobs {
-  id          Int      @id @default(autoincrement())
-  created_at  DateTime @default(now()) @db.Timestamp(6)
-  author      User     @relation(fields: [authorId], references: [id])
+  id          Int           @id @default(autoincrement())
+  created_at  DateTime      @default(now()) @db.Timestamp(6)
+  author      User          @relation(fields: [authorId], references: [id])
   authorId    Int
   destination String
   num_days    Int
   job_title   String
   job_body    String
   pay         BigInt
-
+  Itineraries Itineraries[]
 }
 
 model Itineraries {
-  id                 Int      @id @default(autoincrement())
-  created_at         DateTime @default(now()) @db.Timestamp(6)
-  itinerary_author   User     @relation(fields: [itinerary_authorId], references: [id])
-  itinerary_authorId Int
-  destination        String
-  num_days           Int
-  itinerary_title    String
-  itinerary_body     String
+  id              Int                 @id @default(autoincrement())
+  created_at      DateTime            @default(now()) @db.Timestamp(6)
+  author          User                @relation(fields: [authorId], references: [id])
+  authorId        Int
+  destination     String
+  num_days        Int
+  itinerary_title String
+  itinerary_body  String
+  rating          Rating[]
+  comments        Comments[]
+  favourited_user UserOnItineraries[]
+  job             Jobs                @relation(fields: [jobsId], references: [id])
+  jobsId          Int
+}
 
+model UserOnItineraries {
+  User          User        @relation(fields: [userId], references: [id])
+  userId        Int
+  Itineraries   Itineraries @relation(fields: [itinerariesId], references: [id])
+  itinerariesId Int
+
+  @@id([userId, itinerariesId])
+}
+
+model Rating {
+  id            Int         @id @default(autoincrement())
+  author        User        @relation(fields: [userId], references: [id])
+  userId        Int
+  Itineraries   Itineraries @relation(fields: [itinerariesId], references: [id])
+  itinerariesId Int
+}
+
+model Comments {
+  id          String      @id @default(cuid())
+  author      User        @relation(fields: [userId], references: [id])
+  userId      Int
+  body        String
+  itinerary   Itineraries @relation(fields: [itineraryId], references: [id])
+  itineraryId Int
 }

@@ -1,5 +1,6 @@
 //****************DEPENDENCIES***************
 require("dotenv").config();
+import { PrismaClient } from "@prisma/client";
 
 const express = require("express");
 const app = express();
@@ -7,8 +8,7 @@ const jwt = require("jsonwebtoken");
 const PORT = process.env.PORT ?? 4000;
 const path = require("path");
 const cors = require("cors");
-
-//****************MIDDLEWARE***************//
+const prisma = new //****************MIDDLEWARE***************//
 app.use(
   cors({
     credentials: true,
@@ -29,7 +29,7 @@ console.log("dirname:", __dirname);
 // app.use('/daybits/comments', CommentsController);
 
 app.get("/", (req, res) => {
-  res.json({ msg: "Hello World" });
+  res.json({ msg: "Hello World!" });
 });
 
 app.listen(PORT, () => {
