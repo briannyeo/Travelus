@@ -9,18 +9,20 @@ datasource db {
 
 //Modeling database
 model User {
-  id                     Int                 @id @default(autoincrement())
-  username               String              @db.VarChar(255)
-  password               String              @db.VarChar(255)
-  location_based         String              @db.VarChar(255)
+  id                     Int           @id @default(autoincrement())
+  username               String        @db.VarChar(255)
+  password               String        @db.VarChar(255)
+  location_based         String        @db.VarChar(255)
   description            String
   image                  String?
-  jobs                   Jobs[]
-  itineraries            Int[]
-  favourited_itineraries UserOnItineraries[]
+  jobs                   Jobs[] //in controller, fetch all jobs that contain userID and save it here. Prev: Job[] OR Int[]
+  //itineraries            Int[] //in controller, fetch all itineraries that contain userID and dont need save ehre
+  //favourited_itineraries UserOnItineraries[]
+  favourited_itineraries Int[] //Instead of line 20, in frontend when user click favourite, post itinerary id to here and save
   user_comments          Comments[]
   rating                 Rating[]
-  itineraries_requested  Itineraries[]
+  proposal_itineraries   Itineraries[]
+  //UserOnItineraries      UserOnItineraries[] line 20
 }
 
 model Jobs {
@@ -33,13 +35,13 @@ model Jobs {
   job_title   String
   job_body    String
   pay         BigInt
-  Itineraries Itineraries[]
+  itinerary   Itineraries[] //which itinerary has been submitted for this job
 }
 
 model Itineraries {
-  id              Int                 @id @default(autoincrement())
-  created_at      DateTime            @default(now()) @db.Timestamp(6)
-  author          User                @relation(fields: [authorId], references: [id])
+  id              Int        @id @default(autoincrement())
+  created_at      DateTime   @default(now()) @db.Timestamp(6)
+  author          User       @relation(fields: [authorId], references: [id])
   authorId        Int
   destination     String
   num_days        Int
@@ -47,19 +49,20 @@ model Itineraries {
   itinerary_body  String
   rating          Rating[]
   comments        Comments[]
-  favourited_user UserOnItineraries[]
-  job             Jobs                @relation(fields: [jobsId], references: [id])
+  // favourited_user UserOnItineraries[] see line 20
+  job             Jobs?      @relation(fields: [jobsId], references: [id]) //optional because it could be a itinerary without any job
   jobsId          Int
+  isprivate       Boolean //when you click "do itinerary" on job post, the itinerary submitted will be private
 }
 
-model UserOnItineraries {
-  User          User        @relation(fields: [userId], references: [id])
-  userId        Int
-  Itineraries   Itineraries @relation(fields: [itinerariesId], references: [id])
-  itinerariesId Int
+// model UserOnItineraries {
+//   User          User        @relation(fields: [userId], references: [id])
+//   userId        Int
+//   Itineraries   Itineraries @relation(fields: [itinerariesId], references: [id])
+//   itinerariesId Int
 
-  @@id([userId, itinerariesId])
-}
+//   @@id([userId, itinerariesId])
+// }
 
 model Rating {
   id            Int         @id @default(autoincrement())
