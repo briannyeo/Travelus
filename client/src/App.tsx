@@ -1,13 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './components/Navbar';
+import React from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import ItineraryRequest from "./pages/ItineraryRequest";
+import ItineraryLibrary from "./pages/ItineraryLibrary";
+import Community from "./pages/Community";
 
 function App() {
   return (
     <div className="App">
-    <Navbar/>
-
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navbar />}>
+            <Route index element={<Home />} />
+            <Route path="request" element={<ItineraryRequest />} />
+            <Route path="library" element={<ItineraryLibrary />} />
+            <Route path="community" element={<Community />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
