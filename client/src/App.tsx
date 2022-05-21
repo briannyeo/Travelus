@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import ItineraryRequest from "./pages/ItineraryRequest";
 import ItineraryLibrary from "./pages/ItineraryLibrary";
 import Community from "./pages/Community";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="request" element={<ItineraryRequest />} />
             <Route path="library" element={<ItineraryLibrary />} />
             <Route path="community" element={<Community />} />
+            <Route path="register" element={<Register />} />
           </Route>
         </Routes>
       </BrowserRouter>

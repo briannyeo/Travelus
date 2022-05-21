@@ -50,9 +50,9 @@ export default function Navbar() {
               </Link>
               <Link
                 className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                to={`/`}
+                to={`/register`}
               >
-                <span className="ml-2">Profile</span>
+                <span className="ml-2">Login / Sign-Up</span>
               </Link>
             </ul>
           </div>
