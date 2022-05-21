@@ -34,7 +34,7 @@ model Jobs {
   num_days    Int
   job_title   String
   job_body    String
-  pay         BigInt
+  pay         Int
   itinerary   Itineraries[] //which itinerary has been submitted for this job
 }
 

@@ -10,6 +10,9 @@ const path = require("path");
 const cors = require("cors");
 const prisma = new PrismaClient();
 
+//****************CONTROLLERS***************//
+const UsersController = require("./controllers/UsersController.js");
+
 //****************MIDDLEWARE***************//
 app.use(
   cors({
@@ -27,24 +30,62 @@ console.log("dirname:", __dirname);
 
 //****************ROUTES***************//
 // app.use('/daybits/journal', journalController);
-// app.use('/daybits/register', usersController);
+app.use("/travelus/register", UsersController);
 // app.use('/daybits/comments', CommentsController);
 
-// app.get("/", (req, res) => {
-//   res.json({ msg: "Hello World!" });
+//get all jobs
+// app.get("/", async (req, res) => {
+//   const jobs = await prisma.jobs.findMany({ include: { author: true } });
+//   res.json({ jobs });
+// });
+
+//create a user
+// app.post("/", async (req, res) => {
+//   const jobs = await prisma.user.create({
+//     data: {
+//       destination: "US",
+//       job_title: "Going to US for 20 days",
+//       job_body: "this is a body for US job",
+//       num_days: 20,
+//       pay: 30,
+//       authorId: 2,
+//     },
+//   });
+//   res.json({ jobs });
 // });
 
 //create a job
 app.post("/", async (req, res) => {
-  const jobs = await prisma.jobs.findMany();
+  const jobs = await prisma.jobs.create({
+    data: {
+      destination: "US",
+      job_title: "Going to US for 20 days",
+      job_body: "this is a body for US job",
+      num_days: 20,
+      pay: 30,
+      authorId: 2,
+    },
+  });
   res.json({ jobs });
 });
 
 //get a job
-app.get("/:job_id", (req, res) => {});
+// app.get("/:job_id", async (req, res) => {
+//   const job = await prisma.jobs.findUnique({
+//     where: {
+//       id: 2,
+//     },
+//   });
+//   res.json({ job });
+// });
 
 //delete a job
-app.get("/:job_id", (req, res) => {});
+// app.post("/:job_id", async (req, res) => {
+//   const job = await prisma.jobs.delete({
+//     where: { id: 2 },
+//   });
+//   res.json({ job });
+// });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
