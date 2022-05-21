@@ -30,7 +30,7 @@ console.log("dirname:", __dirname);
 
 //****************ROUTES***************//
 // app.use('/daybits/journal', journalController);
-app.use("/travelus/register", UsersController);
+app.use("/api/register", UsersController);
 // app.use('/daybits/comments', CommentsController);
 
 //get all jobs
@@ -55,19 +55,19 @@ app.use("/travelus/register", UsersController);
 // });
 
 //create a job
-app.post("/", async (req, res) => {
-  const jobs = await prisma.jobs.create({
-    data: {
-      destination: "US",
-      job_title: "Going to US for 20 days",
-      job_body: "this is a body for US job",
-      num_days: 20,
-      pay: 30,
-      authorId: 2,
-    },
-  });
-  res.json({ jobs });
-});
+// app.post("/", async (req, res) => {
+//   const jobs = await prisma.jobs.create({
+//     data: {
+//       destination: "US",
+//       job_title: "Going to US for 20 days",
+//       job_body: "this is a body for US job",
+//       num_days: 20,
+//       pay: 30,
+//       authorId: 2,
+//     },
+//   });
+//   res.json({ jobs });
+// });
 
 //get a job
 // app.get("/:job_id", async (req, res) => {
@@ -86,6 +86,10 @@ app.post("/", async (req, res) => {
 //   });
 //   res.json({ job });
 // });
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./frontend/build/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
