@@ -3,6 +3,8 @@ const prisma = new PrismaClient();
 const bcrypt = require("bcrypt");
 const express = require("express");
 const users = express.Router();
+const jwt = require("jsonwebtoken");
+const path = require("path");
 
 //seed account
 users.post("/seedaccount", async (req, res) => {
