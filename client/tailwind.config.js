@@ -15,6 +15,7 @@ module.exports = {
       serif: ["Merriweather", "serif"],
     },
     extend: {},
+    plugins: [require("daisyui")],
   },
   plugins: [],
 };
