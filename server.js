@@ -12,6 +12,8 @@ const prisma = new PrismaClient();
 
 //****************CONTROLLERS***************//
 const UsersController = require("./controllers/UsersController.js");
+const ItineraryController = require("./controllers/ItineraryController.js");
+const JobController = require("./controllers/JobController.js");
 
 //****************MIDDLEWARE***************//
 app.use(
@@ -29,8 +31,10 @@ if (process.env.NODE_ENV === "production") {
 console.log("dirname:", __dirname);
 
 //****************ROUTES***************//
-// app.use('/daybits/journal', journalController);
-app.use("/api/register", UsersController);
+
+app.use("/api/user", UsersController);
+app.use("/api/itinerary", ItineraryController);
+app.use("/api/job", JobController);
 // app.use('/daybits/comments', CommentsController);
 
 //get all jobs
@@ -63,7 +67,7 @@ app.use("/api/register", UsersController);
 //       job_body: "this is a body for US job",
 //       num_days: 20,
 //       pay: 30,
-//       authorId: 2,
+//       authorId: 3,
 //     },
 //   });
 //   res.json({ jobs });

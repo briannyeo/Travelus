@@ -27,8 +27,9 @@ users.post("/seedaccount", async (req, res) => {
         },
       ],
     });
+    const users = await prisma.user.findMany({});
 
-    res.send("user created");
+    res.send(users);
   } catch (err) {
     res.status(400).send(err);
   }
