@@ -1,21 +1,29 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    colors: {
-      blue: "#1fb6ff",
-      pink: "#ff49db",
-      orange: "#ff7849",
-      green: "#13ce66",
-      "gray-dark": "#273444",
-      gray: "#8492a2",
-      "gray-light": "#d3dce6",
-    },
-    fontFamily: {
-      sans: ["Graphik", "sans-serif"],
-      serif: ["Merriweather", "serif"],
-    },
-    extend: {},
-    plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#6419E6",
+
+          secondary: "#D926A9",
+
+          accent: "#1FB2A6",
+
+          neutral: "#191D24",
+
+          "base-100": "#2A303C",
+
+          info: "#3ABFF8",
+
+          success: "#36D399",
+
+          warning: "#FBBD23",
+
+          error: "#F87272",
+        },
+      },
+    ],
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };
