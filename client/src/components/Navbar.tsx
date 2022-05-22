@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
+import Login from "./Login";
 
 export default function Navbar() {
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
+
   return (
     <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-gray mb-3">
+      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white mb-3">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
               to={`/`}
-              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-blue"
             >
               Travelus
             </Link>
             <button
-              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              className="text-blue cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
@@ -30,30 +32,33 @@ export default function Navbar() {
             id="example-navbar-danger"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <Link
-                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                to={`/request`}
-              >
-                <span className="ml-2">Itinerary Requests</span>
-              </Link>
-              <Link
-                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                to={`/library`}
-              >
-                <span className="ml-2">Itinerary Library</span>
-              </Link>
-              <Link
-                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                to={`/community`}
-              >
-                <span className="ml-2">Community</span>
-              </Link>
-              <Link
-                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                to={`/register`}
-              >
-                <span className="ml-2">Login / Sign-Up</span>
-              </Link>
+              <li>
+                <Link
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-blue hover:opacity-75"
+                  to={`/request`}
+                >
+                  <span className="ml-2">Itinerary Requests</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-blue hover:opacity-75"
+                  to={`/library`}
+                >
+                  <span className="ml-2">Itinerary Library</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-blue hover:opacity-75"
+                  to={`/community`}
+                >
+                  <span className="ml-2">Community</span>
+                </Link>
+              </li>
+              <li>
+                <Login />
+              </li>
             </ul>
           </div>
         </div>
