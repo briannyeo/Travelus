@@ -9,10 +9,8 @@ module.exports = {
     },
     colors: {
       blue: "#64bce1",
-      purple: "#7e5bef",
-      "gray-dark": "#273444",
-      gray: "#8492a6",
-      "gray-light": "#d3dce6",
+      gray: "#52575f",
+      white: "#FFFFFF",
     },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
