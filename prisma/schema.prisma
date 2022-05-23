@@ -14,7 +14,7 @@ model User {
   username               String        @db.VarChar(255)
   password               String        @db.VarChar(255)
   location_based         String        @db.VarChar(255)
-  description            String
+  description            String?
   image                  String?
   jobs                   Jobs[] //in controller, fetch all jobs that contain userID and save it here. Prev: Job[] OR Int[]
   //itineraries            Int[] //in controller, fetch all itineraries that contain userID and dont need save ehre
