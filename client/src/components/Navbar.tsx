@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
+
 import Login from "./Login";
+import Register from "./Register";
 
 export default function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -58,6 +60,9 @@ export default function Navbar() {
               </li>
               <li>
                 <Login />
+              </li>
+              <li>
+                <Register />
               </li>
             </ul>
           </div>

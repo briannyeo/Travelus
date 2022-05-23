@@ -53,7 +53,6 @@ const Login = () => {
       >
         Login / Sign-Up
       </label>
-
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <label htmlFor="my-modal-4" className="modal cursor-pointer">
         <label className="modal-box relative" htmlFor="">
@@ -68,7 +67,7 @@ const Login = () => {
           </h3>
           <form
             onSubmit={handleSubmit}
-            className="form-control w-full max-w-xs flex justify-center"
+            className="form-control w-full max-w-xs "
           >
             <label className="label">
               <span className="label-text">Username</span>
@@ -90,10 +89,21 @@ const Login = () => {
                 setPassword(event.target.value)
               }
             />
-            <button type="submit">Login</button>
+            <button
+              className="bg-blue text-white hover:bg-darkblue hover:border-transparent mt-10 btn btn-sm border-transparent"
+              type="submit"
+            >
+              Login
+            </button>
           </form>
           <span>
-            Don't have an account? <Link to={`/register`}>Sign up now</Link>
+            Don't have an account?{" "}
+            <label
+              htmlFor="my-modal-4"
+              className="hover:text-darkblue text-blue"
+            >
+              Sign up now!
+            </label>
           </span>
         </label>
       </label>
