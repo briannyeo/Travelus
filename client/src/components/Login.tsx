@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-// interface UserInfo {
-//   username: string;
-//   password: string;
-// }
+interface UserInfo {
+  username: string;
+  password: string;
+}
 
 const Login = () => {
   const [username, setUsername] = useState({});
@@ -14,34 +14,35 @@ const Login = () => {
 
   //const navigate = useNavigate();
 
-  // const checkUser = (userInfo) => {
-  //   fetch("/api/user/account", {
-  //     method: "POST",
-  //     credentials: "include",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(userInfo),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data.status === "success") {
-  //         //setLogin(true); //check that the cookie.user exists? should be on index page
-  //         alert("Login successful. Welcome to travelus!");
-  //         //navigate("/")
-  //       } else {
-  //         alert("Login failed. Please try again or register as a new user");
-  //       }
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
+  const checkUser = (userInfo: any) => {
+    fetch("/api/user/login", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          //setLogin(true); //check that the cookie.user exists? should be on index page
+          alert("Login successful. Welcome to travelus!");
+          //navigate("/")
+        } else {
+          alert("Login failed. Please try again or register as a new user");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const userInfo = { username, password };
+
     console.log("submit button clicked");
     console.log(userInfo);
-    //checkUser(userInfo); //LINK to backend
+    checkUser(userInfo); //LINK to backend
   };
 
   return (

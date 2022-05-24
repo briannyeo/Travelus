@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import CountrySelector from "./countrylist";
-import { z } from "zod";
+// import { z } from "zod";
 
-// type Data = {
-//   username: string;
-//   password: string;
-//   location_based: string;
-// };
+type UserInfo = {
+  username: string;
+  password: string;
+  location_based: string;
+};
 
 // const User = z.object({
 //   id: z.number(),
@@ -20,11 +20,12 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
 
-  const onSubmit = (userinfo: any) => {
+    // watch,
+    // formState: { errors },
+  } = useForm<UserInfo>();
+
+  const onSubmit: SubmitHandler<UserInfo> = (userinfo) => {
     console.log(userinfo);
     fetch("/api/user/register", {
       method: "POST",
@@ -47,7 +48,7 @@ const Register = () => {
       .catch((error) => console.log(error));
   };
 
-  console.log(watch("example")); // watch input value by passing the name of it
+  //console.log(watch("example")); // watch input value by passing the name of it
 
   return (
     <div>
@@ -110,9 +111,9 @@ const Register = () => {
               <option>China</option>
               <option>USA</option>
             </select>
+            <CountrySelector />
+
             {/* need to make all countries */}
-            {/* <CountrySelector /> */}
-            {errors.exampleRequired && <span>This field is required</span>}
             <button
               className="bg-blue text-white hover:bg-darkblue hover:border-transparent mt-10 btn btn-sm border-transparent"
               type="submit"
