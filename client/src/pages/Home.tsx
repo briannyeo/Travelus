@@ -1,5 +1,6 @@
 //import { useEffect, useState } from "react";
 import { z } from "zod";
+import CountrySelector from "../components/countrylist";
 
 //{"id":19,"username":"brian","password":"$2b$10$2xyhH.UtxV4sdIvc5Y2Td.tsc1P9TQ.lEyH6WCUCagcxz80hp1IMK","location_based":"Singapore","description":"Shopping etc etc","image":null,"favourited_itineraries":[]},{"id":20,"username":"admin","password":"$2b$10$4sy1Ampm09caD3vL9m2RZewgA0Lnt/KRqXLi.rrJvO5QSqS4kjMym","location_based":"Thailand","description":"admin description","image":null,"favourited_itineraries":[]}]
 
@@ -32,6 +33,7 @@ const Home = () => {
   return (
     <div>
       <h1>Home</h1>
+
       <button onClick={createAccount}>Click</button>
     </div>
   );
