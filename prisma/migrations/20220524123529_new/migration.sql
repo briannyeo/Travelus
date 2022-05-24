@@ -4,9 +4,9 @@ CREATE TABLE "User" (
     "username" VARCHAR(255) NOT NULL,
     "password" VARCHAR(255) NOT NULL,
     "location_based" VARCHAR(255) NOT NULL,
-    "description" TEXT NOT NULL,
+    "description" TEXT,
     "image" TEXT,
-    "itineraries" INTEGER[],
+    "favourited_itineraries" INTEGER[],
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -20,7 +20,7 @@ CREATE TABLE "Jobs" (
     "num_days" INTEGER NOT NULL,
     "job_title" TEXT NOT NULL,
     "job_body" TEXT NOT NULL,
-    "pay" BIGINT NOT NULL,
+    "pay" INTEGER NOT NULL,
 
     CONSTRAINT "Jobs_pkey" PRIMARY KEY ("id")
 );
@@ -35,16 +35,9 @@ CREATE TABLE "Itineraries" (
     "itinerary_title" TEXT NOT NULL,
     "itinerary_body" TEXT NOT NULL,
     "jobsId" INTEGER NOT NULL,
+    "isprivate" BOOLEAN NOT NULL,
 
     CONSTRAINT "Itineraries_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "UserOnItineraries" (
-    "userId" INTEGER NOT NULL,
-    "itinerariesId" INTEGER NOT NULL,
-
-    CONSTRAINT "UserOnItineraries_pkey" PRIMARY KEY ("userId","itinerariesId")
 );
 
 -- CreateTable
@@ -66,6 +59,9 @@ CREATE TABLE "Comments" (
     CONSTRAINT "Comments_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateIndex
+CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+
 -- AddForeignKey
 ALTER TABLE "Jobs" ADD CONSTRAINT "Jobs_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -74,12 +70,6 @@ ALTER TABLE "Itineraries" ADD CONSTRAINT "Itineraries_authorId_fkey" FOREIGN KEY
 
 -- AddForeignKey
 ALTER TABLE "Itineraries" ADD CONSTRAINT "Itineraries_jobsId_fkey" FOREIGN KEY ("jobsId") REFERENCES "Jobs"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "UserOnItineraries" ADD CONSTRAINT "UserOnItineraries_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "UserOnItineraries" ADD CONSTRAINT "UserOnItineraries_itinerariesId_fkey" FOREIGN KEY ("itinerariesId") REFERENCES "Itineraries"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Rating" ADD CONSTRAINT "Rating_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
