@@ -11,7 +11,7 @@ datasource db {
 //Modeling database
 model User {
   id                     Int           @id @default(autoincrement())
-  username               String        @db.VarChar(255)
+  username               String        @unique @db.VarChar(255)
   password               String        @db.VarChar(255)
   location_based         String        @db.VarChar(255)
   description            String?
