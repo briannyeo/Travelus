@@ -112,7 +112,7 @@ users.post("/login", async (req, res) => {
       console.log(token);
 
       // user
-      res.status(200).json({ status: "success" });
+      res.status(200).json({ user: user, status: "success" });
     } else {
       res.status(400).send("Invalid Credentials");
     }
