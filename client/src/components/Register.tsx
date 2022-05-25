@@ -9,18 +9,10 @@ type UserInfo = {
   location_based: string;
 };
 
-// const User = z.object({
-//   id: z.number(),
-//   username: z.string(),
-//   password: z.string(),
-//   location_based: z.string(),
-// });
-
 const Register = () => {
   const {
     register,
     handleSubmit,
-
     // watch,
     // formState: { errors },
   } = useForm<UserInfo>();
@@ -38,9 +30,7 @@ const Register = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          //setLogin(true); //check that the cookie.user exists? should be on index page
           alert("Registration successful. Welcome to travelus!");
-          //navigate("/")
         } else {
           alert("Registration failed. Please try again ");
         }
@@ -111,7 +101,7 @@ const Register = () => {
               <option>China</option>
               <option>USA</option>
             </select>
-            <CountrySelector />
+            {/* <CountrySelector /> */}
 
             {/* need to make all countries */}
             <button

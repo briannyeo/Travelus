@@ -7,9 +7,9 @@ import Community from "./pages/Community";
 import NoPageFound from "./pages/NoPageFound";
 import { atom, useAtom } from "jotai";
 
-export const loginAtom = atom(false); //create a atom with state of false and export
+export const loginAtom = atom(false);
 
-const Protected = (children: any) => {
+const Protected = (children) => {
   const [login, _] = useAtom(loginAtom);
   if (login) {
     return children;
@@ -26,9 +26,30 @@ function App() {
         <Routes>
           <Route path="/" element={<Navbar />}>
             <Route index element={<Home />} />
-            <Route path="request" element={<ItineraryRequest />} />
-            <Route path="library" element={<ItineraryLibrary />} />
-            <Route path="community" element={<Community />} />
+            <Route
+              path="request"
+              element={
+                <Protected>
+                  <ItineraryRequest />
+                </Protected>
+              }
+            />
+            <Route
+              path="library"
+              element={
+                <Protected>
+                  <ItineraryLibrary />
+                </Protected>
+              }
+            />
+            <Route
+              path="community"
+              element={
+                <Protected>
+                  <Community />
+                </Protected>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
