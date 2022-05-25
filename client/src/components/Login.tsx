@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 
-interface UserInfo {
+interface LoginInfo {
   username: string;
   password: string;
 }
 
 const Login = () => {
-  const [username, setUsername] = useState({});
-  const [password, setPassword] = useState({});
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   //const [errorMessages, setErrorMessages] = useState({});
   //const [user, setUser] = useState("");
   console.log(username, password);
 
   //const navigate = useNavigate();
 
-  const checkUser = (userInfo: any) => {
+  const checkUser = ({ username, password }: LoginInfo) => {
     fetch("/api/user/login", {
       method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify({ username, password }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -38,11 +38,12 @@ const Login = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const userInfo = { username, password };
+    const loginInfo = { username, password };
+    console.log(loginInfo);
 
     console.log("submit button clicked");
-    console.log(userInfo);
-    checkUser(userInfo); //LINK to backend
+
+    checkUser(loginInfo); //LINK to backend
   };
 
   return (
