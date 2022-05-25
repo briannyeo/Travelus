@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useAtom } from "jotai";
+import loginAtom from "../App";
 
 interface LoginInfo {
   username: string;
@@ -8,8 +10,11 @@ interface LoginInfo {
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [login, setLogin] = useAtom(loginAtom);
+
   //const [errorMessages, setErrorMessages] = useState({});
   //const [user, setUser] = useState("");
+
   console.log(username, password);
 
   //const navigate = useNavigate();
@@ -26,7 +31,7 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          //setLogin(true); //check that the cookie.user exists? should be on index page
+          setLogin(true); //check that the cookie.user exists? should be on index page
           alert("Login successful. Welcome to travelus!");
           //navigate("/")
         } else {
@@ -49,16 +54,16 @@ const Login = () => {
   return (
     <div>
       <label
-        htmlFor="my-modal-4"
+        htmlFor="login-modal"
         className="cursor-pointer px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-blue hover:opacity-75"
       >
         Login / Sign-Up
       </label>
-      <input type="checkbox" id="my-modal-4" className="modal-toggle" />
-      <label htmlFor="my-modal-4" className="modal cursor-pointer">
+      <input type="checkbox" id="login-modal" className="modal-toggle" />
+      <label htmlFor="login-modal" className="modal cursor-pointer">
         <label className="modal-box relative" htmlFor="">
           <label
-            htmlFor="my-modal-4"
+            htmlFor="login-modal"
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             x
@@ -100,7 +105,7 @@ const Login = () => {
           <span>
             Don't have an account?{" "}
             <label
-              htmlFor="my-modal-4"
+              htmlFor="register-modal"
               className="hover:text-darkblue text-blue"
             >
               Sign up now!

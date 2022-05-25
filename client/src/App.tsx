@@ -1,14 +1,27 @@
 import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ItineraryRequest from "./pages/ItineraryRequest";
 import ItineraryLibrary from "./pages/ItineraryLibrary";
 import Community from "./pages/Community";
+import NoPageFound from "./pages/NoPageFound";
+import { atom, useAtom } from "jotai";
+
+export const loginAtom = atom(false); //create a atom with state of false and export
+
+const Protected = (children: any) => {
+  const [login, _] = useAtom(loginAtom);
+  if (login) {
+    return children;
+  } else {
+    return <NoPageFound />;
+  }
+};
 
 function App() {
+  const [login, setLogin] = useAtom(loginAtom);
   return (
     <div className="App">
       <BrowserRouter>
