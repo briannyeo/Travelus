@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useAtom } from "jotai";
-import loginAtom from "../App";
 
 interface LoginInfo {
   username: string;
@@ -10,7 +8,6 @@ interface LoginInfo {
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [login, setLogin] = useAtom(loginAtom);
 
   //const [errorMessages, setErrorMessages] = useState({});
   //const [user, setUser] = useState("");
@@ -31,7 +28,7 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
-          setLogin(true); //check that the cookie.user exists? should be on index page
+          //setLogin(true); //check that the cookie.user exists? should be on index page
           alert("Login successful. Welcome to travelus!");
           //navigate("/")
         } else {
