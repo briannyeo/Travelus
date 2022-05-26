@@ -3,13 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ItineraryRequest from "./pages/ItineraryRequest";
 import ItineraryLibrary from "./pages/ItineraryLibrary";
+import Profile from "./pages/Profile"
 import Community from "./pages/Community";
 import NoPageFound from "./pages/NoPageFound";
 import { atom, useAtom } from "jotai";
 
 export const loginAtom = atom(false);
 
-const Protected = (children) => {
+const Protected = ({children}) => {
   const [login, _] = useAtom(loginAtom);
   if (login) {
     return children;
@@ -50,7 +51,17 @@ function App() {
                 </Protected>
               }
             />
+            <Route
+              path="profile"
+              element={
+                <Protected>
+                  <Profile />
+                </Protected>
+              }
+            />
           </Route>
+          
+          
         </Routes>
       </BrowserRouter>
     </div>
