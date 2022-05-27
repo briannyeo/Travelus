@@ -9,12 +9,13 @@ import { atom, useAtom } from "jotai";
 import Createjob from "./pages/Createjob";
 import Navbar1 from "./components/Navbar1";
 import Register from "./components/Register";
+import Register1 from "./components/Register1";
 
 export const loginAtom = atom(false);
 
 const Protected = ({children}) => {
   const [login, _] = useAtom(loginAtom);
-  if (!login) { //made it login = false temporarily***********************
+  if (login) { //made it login = false temporarily***********************
     return children;
   } else {
     return <NoPageFound />;
@@ -72,7 +73,7 @@ function App() {
              <Route
               path="register"
               element={
-                  <Register />               
+                  <Register1 />               
               }
             />
           </Route>

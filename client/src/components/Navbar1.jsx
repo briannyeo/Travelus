@@ -8,7 +8,7 @@ import { useAtom } from "jotai";
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
-  { name: 'Itinerary Request', href: '/request', current: false },
+  { name: 'Itinerary Requests', href: '/request', current: false },
   { name: 'Itinerary Library', href: '/library', current: false },
   
 ]

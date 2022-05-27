@@ -38,17 +38,19 @@ const Home = () => {
   return (
     <>
       {login ? (
-        <div className="flex flex-col bg-blue container max-h-screen item-stretch justify-center items-center">
-          <div className="bg-white basis-1/2 flex flex-row m-5 item-stretc">
-            <div className="container border-solid border-gray border-3 m-5 ">
-              <h1>Your trips</h1>
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col">
+        <div className="flex-row flex">
+          <div className="max-w-3xl mx-auto bg-gray-100">
+             <div className="text-3xl font-bold">Your trips</div> 
             </div>
-            <div className="container border-solid border-gray border-3">
-              <h1>Your itineraries</h1>
+          <div className="max-w-3xl mx-auto bg-gray-100">
+          <div className="text-3xl font-bold">Your itineraries</div>
             </div>
-          </div>
-          <div className="bg-gray basis-1/2">div2</div>
         </div>
+        <div className="container mx-auto sm:px-6 lg:px-8">
+        <div className="text-3xl font-bold text-center">Explore</div>
+        </div>
+      </div>
       ) : (
         <Login1 />
       )}
