@@ -8,35 +8,35 @@ const path = require("path");
 require("dotenv").config();
 
 //seed account
-// users.post("/seedaccount", async (req, res) => {
-//   try {
-//     // console.log("here");
-//     // const deleted = await prisma.user.deleteMany({});
-//     // console.log("deleted", deleted);
-//     await prisma.user.deleteMany({});
-//     await prisma.user.createMany({
-//       data: [
-//         {
-//           username: "brian",
-//           password: bcrypt.hashSync("12345", 10),
-//           location_based: "Singapore",
-//           description: "Shopping etc etc",
-//         },
-//         {
-//           username: "admin",
-//           password: bcrypt.hashSync("88888", 10),
-//           location_based: "Thailand",
-//           //description: "admin description",
-//         },
-//       ],
-//     });
-//     const users = await prisma.user.findMany({});
+users.post("/seedaccount", async (req, res) => {
+  try {
+    // console.log("here");
+    // const deleted = await prisma.user.deleteMany({});
+    // console.log("deleted", deleted);
+    await prisma.user.deleteMany({});
+    await prisma.user.createMany({
+      data: [
+        {
+          username: "brian",
+          password: bcrypt.hashSync("12345", 10),
+          location_based: "Singapore",
+          description: "Shopping etc etc",
+        },
+        {
+          username: "admin",
+          password: bcrypt.hashSync("88888", 10),
+          location_based: "Thailand",
+          //description: "admin description",
+        },
+      ],
+    });
+    const users = await prisma.user.findMany({});
 
-//     res.send(users);
-//   } catch (err) {
-//     res.status(400).send(err);
-//   }
-// });
+    res.send(users);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
 //ADD NEW USER TO PRISMA (REGISTER)
 users.post("/register", async (req, res) => {
@@ -69,14 +69,7 @@ users.post("/register", async (req, res) => {
       },
     });
 
-    //create token
-    const accessToken = jwt.sign(user, process.env.TOKEN_SECRET, {
-      expiresIn: "2h",
-    });
-    //save user token
-    user.accessToken = accessToken;
-    //return new user
-    res.status(201).json({ status: "success" });
+    res.status(201).json({ status: "success" }); //send back cookie
     console.log("created user", user);
   } catch (err) {
     console.log(err);
@@ -89,7 +82,6 @@ users.post("/login", async (req, res) => {
   try {
     // Get user input
     const { username, password } = req.body;
-
     // Validate user input
     if (!(username && password)) {
       res.status(400).send("All input is required");
@@ -100,21 +92,20 @@ users.post("/login", async (req, res) => {
         username: username,
       },
     });
-
     if (user && (await bcrypt.compare(password, user.password))) {
       // Create token
-      const token = jwt.sign(user, process.env.TOKEN_SECRET, {
-        expiresIn: "2h",
-      });
+      const token = jwt.sign(
+        { username: user.username, id: user.id },
+        process.env.TOKEN_SECRET,
+        { expiresIn: 60 * 60 }
+      );
 
-      // save user token
-      user.token = token;
-      console.log(token);
-
+      // console.log(token);
+      res.cookie("cookie", token);
       // user
-      res.status(200).json({ user: user, status: "success" });
+      res.status(200).json({ token: token, status: "success" });
     } else {
-      res.status(400).send("Invalid Credentials");
+      res.status(403).send("Invalid Credentials");
     }
   } catch (err) {
     console.log(err);
@@ -124,18 +115,5 @@ users.post("/login", async (req, res) => {
 
 //LOGOUT
 users.post("/logout", (req, res) => {});
-
-//middleware to authenticate user
-const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
-  if (token == null) return res.sendStatus(401);
-  jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403); //token not valid
-
-    req.user = user;
-    next();
-  });
-};
 
 module.exports = users;

@@ -11,6 +11,7 @@ module.exports = {
       blue: "#64bce1",
       darkblue: "#1e769b",
       gray: "#52575f",
+      lightgray: "#d2d5d8",
       white: "#FFFFFF",
     },
     fontFamily: {
@@ -27,7 +28,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("@tailwindcss/forms")],
   // daisyui: {
   //   themes: [
   //     {

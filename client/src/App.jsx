@@ -7,12 +7,13 @@ import Profile from "./pages/Profile"
 import Community from "./pages/Community";
 import NoPageFound from "./pages/NoPageFound";
 import { atom, useAtom } from "jotai";
+import Createjob from "./pages/Createjob";
 
 export const loginAtom = atom(false);
 
 const Protected = ({children}) => {
   const [login, _] = useAtom(loginAtom);
-  if (login) {
+  if (login) { //made it login = false temporarily***********************
     return children;
   } else {
     return <NoPageFound />;
@@ -56,6 +57,14 @@ function App() {
               element={
                 <Protected>
                   <Profile />
+                </Protected>
+              }
+            />
+             <Route
+              path="createjob"
+              element={
+                <Protected>
+                  <Createjob />
                 </Protected>
               }
             />
