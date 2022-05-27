@@ -2,7 +2,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { loginAtom } from "../App";
 import { useAtom } from "jotai";
 
@@ -24,28 +24,29 @@ function classNames(...classes) {
 
 export default function Navbar1() {
     const [login, setLogin] = useAtom(loginAtom);
+    const navigate = useNavigate();
 
 //To handle logout button
-//   const handleLogout = (event: any) => {
-//     event.preventDefault();
-//     fetch("/api/user/logout", {
-//       method: "POST",
-//       credentials: "include",
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         if (data.status === "success") {
-//           alert("You have successfully logged out!");
-//           //window.location.reload();
-//           setLogin(false);
-//           navigate("/");
-//           //code to delete the cookie here
-//         } else {
-//           alert("Logout failed, please try again");
-//         }
-//       })
-//       .catch((error) => console.log(error));
-//   };
+  const handleLogout = (event) => {
+    event.preventDefault();
+    fetch("/api/logout", {
+      method: "POST",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          alert("You have successfully logged out!");
+          //window.location.reload();
+          setLogin(false);
+          navigate("/");
+          //code to delete the cookie here
+        } else {
+          alert("Logout failed, please try again");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
  
   return (
       <>
@@ -143,13 +144,13 @@ export default function Navbar1() {
                 
                       <Menu.Item>
                         {({ active }) => (
-                          <Link to={`/logout`}><div
-
+                          <div
+                            onClick={handleLogout}
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Sign out
                           </div>
-                          </Link>
+                        
                         )}
                       </Menu.Item>
                     </Menu.Items>
