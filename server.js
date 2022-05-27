@@ -9,6 +9,7 @@ const PORT = process.env.PORT ?? 4000;
 const path = require("path");
 const cors = require("cors");
 const prisma = new PrismaClient();
+const cookieParser = require("cookie-parser");
 
 //****************CONTROLLERS***************//
 const UsersController = require("./controllers/UsersController.js");
@@ -24,10 +25,24 @@ app.use(
   })
 );
 app.use(express.json()); //to access req.body
+app.use(cookieParser());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
+
+  // //middleware to authenticate user
+  // const authenticateToken = (req, res, next) => {
+  //   const authHeader = req.headers["authorization"];
+  //   const token = authHeader && authHeader.split(" ")[1];
+  //   if (token == null) return res.sendStatus(401);
+  //   jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+  //     if (err) return res.sendStatus(403); //token not valid
+  //     req.user = user;
+  //     next();
+  //   });
+  // };
 }
+
 console.log("dirname:", __dirname);
 
 //****************ROUTES***************//
@@ -35,7 +50,14 @@ console.log("dirname:", __dirname);
 app.use("/api/user", UsersController);
 app.use("/api/itinerary", ItineraryController);
 app.use("/api/job", JobController);
-// app.use('/daybits/comments', CommentsController);
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./frontend/build/index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 //get all jobs
 // app.get("/", async (req, res) => {
@@ -90,11 +112,3 @@ app.use("/api/job", JobController);
 //   });
 //   res.json({ job });
 // });
-
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./frontend/build/index.html"));
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
