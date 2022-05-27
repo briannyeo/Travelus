@@ -1,4 +1,3 @@
-import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ItineraryRequest from "./pages/ItineraryRequest";
@@ -8,12 +7,14 @@ import Community from "./pages/Community";
 import NoPageFound from "./pages/NoPageFound";
 import { atom, useAtom } from "jotai";
 import Createjob from "./pages/Createjob";
+import Navbar1 from "./components/Navbar1";
+import Register from "./components/Register";
 
 export const loginAtom = atom(false);
 
 const Protected = ({children}) => {
   const [login, _] = useAtom(loginAtom);
-  if (login) { //made it login = false temporarily***********************
+  if (!login) { //made it login = false temporarily***********************
     return children;
   } else {
     return <NoPageFound />;
@@ -26,7 +27,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navbar />}>
+          <Route path="/" element={<Navbar1 />}>
             <Route index element={<Home />} />
             <Route
               path="request"
@@ -68,9 +69,13 @@ function App() {
                 </Protected>
               }
             />
+             <Route
+              path="register"
+              element={
+                  <Register />               
+              }
+            />
           </Route>
-          
-          
         </Routes>
       </BrowserRouter>
     </div>

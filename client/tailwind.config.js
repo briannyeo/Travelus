@@ -1,34 +1,34 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    screens: {
-      sm: "480px",
-      md: "768px",
-      lg: "976px",
-      xl: "1440px",
-    },
-    colors: {
-      blue: "#64bce1",
-      darkblue: "#1e769b",
-      gray: "#52575f",
-      lightgray: "#d2d5d8",
-      white: "#FFFFFF",
-    },
-    fontFamily: {
-      sans: ["Graphik", "sans-serif"],
-      serif: ["Merriweather", "serif"],
-    },
-    extend: {
-      spacing: {
-        128: "32rem",
-        144: "36rem",
-      },
-      borderRadius: {
-        "4xl": "2rem",
-      },
-    },
-  },
-  plugins: [require("daisyui"), require("@tailwindcss/forms")],
+  // theme: {
+  //   screens: {
+  //     sm: "480px",
+  //     md: "768px",
+  //     lg: "976px",
+  //     xl: "1440px",
+  //   },
+  //   colors: {
+  //     blue: "#64bce1",
+  //     darkblue: "#1e769b",
+  //     gray: "#52575f",
+  //     lightgray: "#d2d5d8",
+  //     white: "#FFFFFF",
+  //   },
+  //   fontFamily: {
+  //     sans: ["Graphik", "sans-serif"],
+  //     serif: ["Merriweather", "serif"],
+  //   },
+  //   extend: {
+  //     spacing: {
+  //       128: "32rem",
+  //       144: "36rem",
+  //     },
+  //     borderRadius: {
+  //       "4xl": "2rem",
+  //     },
+  //   },
+  // },
+  plugins: [require("@tailwindcss/forms")],
   // daisyui: {
   //   themes: [
   //     {

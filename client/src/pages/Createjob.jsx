@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 const Createjob = () => {
     const { register, handleSubmit } = useForm();
-    //const onSubmit = data => console.log(data);
+    
     const onSubmit = (jobinfo) => {
         console.log(jobinfo);
         fetch("/api/job/createjob", {
@@ -26,7 +26,8 @@ const Createjob = () => {
       };
     
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex justify-center items-center">
+      <form classnName="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
          <label className="label">
               <span className="label-text">Destination</span>
             </label>
@@ -47,14 +48,14 @@ const Createjob = () => {
               <span className="label-text">Payment (if any)</span>
             </label>
         <input {...register("pay")} />
-
         <button
               className="bg-blue text-white hover:bg-darkblue hover:border-transparent mt-10 btn btn-sm border-transparent"
               type="submit"
             >
-              Register
+              Submit
             </button>
       </form>
+      </div>
     );
 }
 
