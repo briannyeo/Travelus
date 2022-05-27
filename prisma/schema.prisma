@@ -47,6 +47,7 @@ model Itineraries {
   num_days        String
   itinerary_title String
   itinerary_body  String
+  image           String?
   rating          Rating[]
   comments        Comments[]
   // favourited_user UserOnItineraries[] see line 20

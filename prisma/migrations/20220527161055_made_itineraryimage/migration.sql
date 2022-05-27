@@ -33,6 +33,7 @@ CREATE TABLE "Itineraries" (
     "num_days" TEXT NOT NULL,
     "itinerary_title" TEXT NOT NULL,
     "itinerary_body" TEXT NOT NULL,
+    "image" TEXT,
     "jobsId" INTEGER NOT NULL,
     "isprivate" BOOLEAN NOT NULL,
 
