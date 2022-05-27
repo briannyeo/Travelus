@@ -13,7 +13,6 @@ model User {
   id                     Int           @id @default(autoincrement())
   username               String        @unique @db.VarChar(255)
   password               String        @db.VarChar(255)
-  location_based         String        @db.VarChar(255)
   description            String?
   image                  String?
   jobs                   Jobs[] //in controller, fetch all jobs that contain userID and save it here. Prev: Job[] OR Int[]
@@ -45,7 +44,7 @@ model Itineraries {
   author          User       @relation(fields: [authorId], references: [id])
   authorId        Int
   destination     String
-  num_days        Int
+  num_days        String
   itinerary_title String
   itinerary_body  String
   rating          Rating[]

@@ -65,7 +65,6 @@ users.post("/register", async (req, res) => {
       data: {
         username: username,
         password: encryptedPassword,
-        location_based: location_based,
       },
     });
 
