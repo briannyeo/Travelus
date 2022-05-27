@@ -1,13 +1,40 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
-
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
+import { loginAtom } from "../App";
+import { useAtom } from "jotai";
 
-export default function Navbar() {
+const Navbar = () => {
+  const [login, setLogin] = useAtom(loginAtom);
+
+  const navigate = useNavigate();
+
+  //To handle logout button
+  const handleLogout = (event: any) => {
+    event.preventDefault();
+    fetch("/api/user/logout", {
+      method: "POST",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          alert("You have successfully logged out!");
+          //window.location.reload();
+          setLogin(false);
+          navigate("/");
+          //code to delete the cookie here
+        } else {
+          alert("Logout failed, please try again");
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <>
-      <div className="navbar bg-white text-blue">
+      <div className="navbar bg-white text-blue border-b-4 border-solid border-lightgray">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -95,7 +122,9 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <div>Logout</div>
+              <div onClick={handleLogout} className="justify-between">
+                Logout
+              </div>
             </li>
           </ul>
         </div>
@@ -103,4 +132,6 @@ export default function Navbar() {
       <Outlet />
     </>
   );
-}
+};
+
+export default Navbar;

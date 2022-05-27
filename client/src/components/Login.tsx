@@ -32,7 +32,6 @@ const Login = () => {
       .then((data) => {
         if (data.status === "success") {
           setLogin(true); //check that the cookie.user exists? should be on index page
-          console.log(data.user.token);
           alert("Login successful. Welcome to travelus!");
           //navigate("/")
         } else {

@@ -1,5 +1,5 @@
 const ItineraryLibrary = () => {
-  return <h1>ItineraryLibrary</h1>;
+  return <div className="flex"></div>;
 };
 
 export default ItineraryLibrary;
