@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Combobox } from '@headlessui/react'
 import countries from '../data/countries.json'
+import ItineraryCard from '../components/ItineraryCard'
 
 
 
@@ -106,6 +107,7 @@ export default function ItineraryLibrary() {
     <div className="header text-left text-2xl font-bold mt-20">
     Recent Itineraries
     </div>
+    <ItineraryCard/>
     </div>
 
     </div>
