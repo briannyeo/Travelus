@@ -17,10 +17,10 @@ CREATE TABLE "Jobs" (
     "created_at" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "authorId" INTEGER NOT NULL,
     "destination" TEXT NOT NULL,
-    "num_days" INTEGER NOT NULL,
+    "num_days" TEXT NOT NULL,
     "job_title" TEXT NOT NULL,
     "job_body" TEXT NOT NULL,
-    "pay" INTEGER NOT NULL,
+    "pay" TEXT NOT NULL,
 
     CONSTRAINT "Jobs_pkey" PRIMARY KEY ("id")
 );

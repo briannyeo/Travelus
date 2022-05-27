@@ -32,10 +32,10 @@ model Jobs {
   author      User          @relation(fields: [authorId], references: [id])
   authorId    Int
   destination String
-  num_days    Int
+  num_days    String
   job_title   String
   job_body    String
-  pay         Int
+  pay         String
   itinerary   Itineraries[] //which itinerary has been submitted for this job
 }
 
