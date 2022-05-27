@@ -1,10 +1,9 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const express = require("express");
-const jwt = require("jsonwebtoken");
 const job = express.Router();
 const authenticateToken = require("../utils/auth");
-
+const jwt = require("jsonwebtoken");
 // job.get("/test", authenticateToken, async (req, res) => {
 //   console.log("success");
 // });
