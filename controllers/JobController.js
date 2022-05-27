@@ -35,4 +35,10 @@ job.get("/myjobs", authenticateToken, async (req, res) => {
   res.status(200).json({ jobs });
 });
 
+job.get("/", authenticateToken, async (req, res) => {
+  const allJob = await prisma.jobs.findMany();
+  res.status(200).json({ jobs });
+});
+// const users = await prisma.user.findMany()
+
 module.exports = job;
