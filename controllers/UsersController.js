@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 require("dotenv").config();
 const authenticateToken = require("../utils/auth");
+const cloudinary = require("cloudinary").v2;
 
 //seed account
 users.post("/seedaccount", async (req, res) => {
@@ -124,6 +125,6 @@ users.get("/", authenticateToken, async (req, res) => {
   res.status(200).json({ user });
 });
 
-//LOGOUT
+//UPDATE USER DETAILS
 
 module.exports = users;

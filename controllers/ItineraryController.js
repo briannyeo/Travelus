@@ -4,6 +4,7 @@ const express = require("express");
 const itineraries = express.Router();
 const authenticateToken = require("../utils/auth");
 const jwt = require("jsonwebtoken");
+const cloudinary = require("cloudinary").v2;
 
 itineraries.post("/searchcountry", async (req, res) => {
   console.log(req.body);
