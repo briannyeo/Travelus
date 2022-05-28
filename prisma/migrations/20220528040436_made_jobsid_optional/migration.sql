@@ -34,7 +34,7 @@ CREATE TABLE "Itineraries" (
     "itinerary_title" TEXT NOT NULL,
     "itinerary_body" TEXT NOT NULL,
     "image" TEXT,
-    "jobsId" INTEGER NOT NULL,
+    "jobsId" INTEGER,
     "isprivate" BOOLEAN NOT NULL,
 
     CONSTRAINT "Itineraries_pkey" PRIMARY KEY ("id")
@@ -69,7 +69,7 @@ ALTER TABLE "Jobs" ADD CONSTRAINT "Jobs_authorId_fkey" FOREIGN KEY ("authorId") 
 ALTER TABLE "Itineraries" ADD CONSTRAINT "Itineraries_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Itineraries" ADD CONSTRAINT "Itineraries_jobsId_fkey" FOREIGN KEY ("jobsId") REFERENCES "Jobs"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Itineraries" ADD CONSTRAINT "Itineraries_jobsId_fkey" FOREIGN KEY ("jobsId") REFERENCES "Jobs"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Rating" ADD CONSTRAINT "Rating_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

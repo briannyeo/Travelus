@@ -52,7 +52,7 @@ model Itineraries {
   comments        Comments[]
   // favourited_user UserOnItineraries[] see line 20
   job             Jobs?      @relation(fields: [jobsId], references: [id]) //optional because it could be a itinerary without any job
-  jobsId          Int
+  jobsId          Int?
   isprivate       Boolean //when you click "do itinerary" on job post, the itinerary submitted will be private
 }
 
