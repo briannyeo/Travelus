@@ -6,6 +6,7 @@ const users = express.Router();
 const jwt = require("jsonwebtoken");
 const path = require("path");
 require("dotenv").config();
+const authenticateToken = require("../utils/auth");
 
 //seed account
 users.post("/seedaccount", async (req, res) => {
@@ -112,7 +113,17 @@ users.post("/login", async (req, res) => {
   // Our register logic ends here
 });
 
+//GET USER DETAILS
+users.get("/", authenticateToken, async (req, res) => {
+  console.log(req.user.username);
+  const user = await prisma.jobs.findUnique({
+    where: {
+      username: req.user.username,
+    },
+  });
+  res.status(200).json({ user });
+});
+
 //LOGOUT
-users.post("/logout", (req, res) => {});
 
 module.exports = users;

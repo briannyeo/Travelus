@@ -51,12 +51,12 @@ app.use("/api/user", UsersController);
 app.use("/api/itinerary", ItineraryController);
 app.use("/api/job", JobController);
 
-app.post("/api/logout", (req, res) => {
-  res.clearCookie("cookie").json({ status: "success" });
-});
-
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "./frontend/build/index.html"));
+});
+
+app.post("/api/logout", (req, res) => {
+  res.clearCookie("cookie").json({ status: "success" });
 });
 
 app.listen(PORT, () => {

@@ -8,14 +8,14 @@ const ItineraryRequest = () => {
   const [jobs, setJobs] = useState({})
 
   useEffect(() => {
-    const showJobs = () => {
+    const showJobs = (jobEntry) => {
       fetch("/api/job", {
-        method: "get",
+        method: "GET",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
-        //no body?
+        body: JSON.stringify(jobEntry),
       })
         .then((response) => response.json())
         .then((data) => {

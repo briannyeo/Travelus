@@ -9,24 +9,24 @@ const jwt = require("jsonwebtoken");
 // });
 
 job.post("/createjob", authenticateToken, async (req, res) => {
-  // console.log("req.body is", req.body);
-  //console.log("user is", req.user); //{ username: 'brian', id: 1, iat: 1653625752, exp: 1653629352 }
+  console.log("req.body is", req.body);
+  console.log("user is", req.user); //{ username: 'brian', id: 1, iat: 1653625752, exp: 1653629352 }
 
   const jobs = await prisma.jobs.create({
     data: {
       destination: req.body.destination,
-      job_title: req.body.title,
+      job_title: req.body.job_title,
       job_body: req.body.job_body,
       num_days: req.body.num_days,
       pay: req.body.pay,
-      author: req.user.username,
+      authorId: req.user.id,
     },
   });
-  res.status(200).json({ jobs });
+  res.status(200).json({ status: "success", jobs: jobs });
 });
 
 job.get("/myjobs", authenticateToken, async (req, res) => {
-  console.log(req.body.username);
+  //console.log(req.body.username);
   const jobs = await prisma.jobs.findMany({
     where: {
       author: req.user.username,
@@ -37,7 +37,7 @@ job.get("/myjobs", authenticateToken, async (req, res) => {
 
 job.get("/", authenticateToken, async (req, res) => {
   const allJob = await prisma.jobs.findMany();
-  res.status(200).json({ jobs });
+  res.status(200).json({ allJob });
 });
 // const users = await prisma.user.findMany()
 
