@@ -1,20 +1,9 @@
 //import { useEffect, useState } from "react";
-import { z } from "zod";
 import { loginAtom } from "../App";
 import { useAtom } from "jotai";
 import Login1 from "../components/Login1";
 
-//import CountrySelector from "../components/countrylist";
 
-//{"id":19,"username":"brian","password":"$2b$10$2xyhH.UtxV4sdIvc5Y2Td.tsc1P9TQ.lEyH6WCUCagcxz80hp1IMK","location_based":"Singapore","description":"Shopping etc etc","image":null,"favourited_itineraries":[]},{"id":20,"username":"admin","password":"$2b$10$4sy1Ampm09caD3vL9m2RZewgA0Lnt/KRqXLi.rrJvO5QSqS4kjMym","location_based":"Thailand","description":"admin description","image":null,"favourited_itineraries":[]}]
-
-// const User = z.object({
-//   id: z.number(),
-//   username: z.string(),
-//   password: z.string(),
-//   location_based: z.string(),
-//   description: z.string(),
-// });
 
 const Home = () => {
   const [login, setLogin] = useAtom(loginAtom);

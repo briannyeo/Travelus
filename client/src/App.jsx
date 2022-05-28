@@ -11,6 +11,8 @@ import Navbar1 from "./components/Navbar1";
 import Register from "./components/Register";
 import Register1 from "./components/Register1";
 import Createjob1 from "./pages/Createjob1";
+import ItineraryDetails from "./pages/ItineraryDetails";
+import JobDetails from "./pages/JobDetails";
 
 export const loginAtom = atom(false);
 
@@ -39,11 +41,27 @@ function App() {
                 </Protected>
               }
             />
+             <Route
+              path="request/:id"
+              element={
+                <Protected>
+                  <JobDetails />
+                </Protected>
+              }
+            />
             <Route
               path="library"
               element={
                 <Protected>
                   <ItineraryLibrary />
+                </Protected>
+              }
+            />
+            <Route
+              path="library/:id"
+              element={
+                <Protected>
+                  <ItineraryDetails />
                 </Protected>
               }
             />

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { PlusSmIcon as PlusSmIconSolid } from '@heroicons/react/solid'
 import { PlusSmIcon as PlusSmIconOutline } from '@heroicons/react/outline'
+import JobCard from "../components/JobCard";
 
 const ItineraryRequest = () => {
 
   const [jobs, setJobs] = useState({})
+  console.log(jobs)
 
   useEffect(() => {
     const showJobs = (jobEntry) => {
@@ -43,8 +44,7 @@ const ItineraryRequest = () => {
       </Link>
     </div>
       
-
-      {/* Fetch all intineraryrequests */}
+      {jobs ? <JobCard jobs={jobs}/> : <></> }
       </div>
   );
 };
