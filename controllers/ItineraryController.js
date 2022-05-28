@@ -9,7 +9,7 @@ itineraries.post("/searchcountry", authenticateToken, async (req, res) => {
   console.log(req.body);
   const itineraries = await prisma.itineraries.findMany({
     where: {
-      destination: req.body.country,
+      destination: req.body.destination,
     },
   });
   res.status(200).json({ itineraries });

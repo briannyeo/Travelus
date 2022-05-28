@@ -19,24 +19,24 @@ export default function ItineraryLibrary() {
   console.log(selectedCountry)
   console.log(countryItinerary)
   
-  // useEffect(() => {
-  //   const showItineraries = () => {
-  //     fetch("/api/itineraries/searchcountry", {
-  //       method: "POST",
-  //       credentials: "include",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(selectedCountry.name),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setCountryItinerary(data);
-  //       })
-  //       .catch((error) => console.log(error));
-  //   };
-  //   showItineraries();
-  // }, [selectedCountry]);
+  useEffect(() => {
+    const showItineraries = () => {
+      fetch("/api/itinerary/searchcountry", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({destination: selectedCountry?.name}),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setCountryItinerary(data);
+        })
+        .catch((error) => console.log(error));
+    };
+    showItineraries();
+  }, [selectedCountry]);
   
   const filteredCountry =
     query === ''
@@ -45,8 +45,6 @@ export default function ItineraryLibrary() {
           return country.name.toLowerCase().includes(query.toLowerCase())
         })
   
-        
-        
 
   return (
     <div className='max-w-7xl mx-auto sm:px-6 lg:px-8'>
@@ -60,7 +58,7 @@ export default function ItineraryLibrary() {
         <Combobox.Input
           className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
           onChange={(event) => setQuery(event.target.value)}
-          //displayValue={(country) => country.name }
+          displayValue={(country) => country?.name }
         />
         
         
@@ -107,7 +105,7 @@ export default function ItineraryLibrary() {
     <div className="header text-left text-2xl font-bold mt-20">
     Recent Itineraries
     </div>
-    <ItineraryCard/>
+    {/* <ItineraryCard/> */}
     </div>
 
     </div>

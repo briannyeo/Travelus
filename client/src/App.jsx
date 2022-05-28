@@ -10,6 +10,7 @@ import Createjob from "./pages/Createjob";
 import Navbar1 from "./components/Navbar1";
 import Register from "./components/Register";
 import Register1 from "./components/Register1";
+import Createjob1 from "./pages/Createjob1";
 
 export const loginAtom = atom(false);
 
@@ -66,7 +67,7 @@ function App() {
               path="createjob"
               element={
                 <Protected>
-                  <Createjob />
+                  <Createjob1 />
                 </Protected>
               }
             />

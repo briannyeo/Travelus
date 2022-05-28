@@ -27,7 +27,7 @@ const Createjob = () => {
     
     return (
         <div className="flex justify-center items-center">
-      <form classnName="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
          <label className="label">
               <span className="label-text">Destination</span>
             </label>
