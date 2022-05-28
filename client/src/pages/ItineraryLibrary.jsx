@@ -16,9 +16,10 @@ export default function ItineraryLibrary() {
   const [selectedCountry, setSelectedCountry] = useState()
   const [countryItinerary, setCountryItinerary] = useState({})
   
-  console.log(selectedCountry)
-  console.log(countryItinerary)
-  
+  console.log("selectedCountry",selectedCountry)
+  console.log("countryItinerary",countryItinerary)
+  console.log("countryItinerary.itinerary",countryItinerary.itineraries)
+ 
   useEffect(() => {
     const showItineraries = () => {
       fetch("/api/itinerary/searchcountry", {
@@ -102,10 +103,17 @@ export default function ItineraryLibrary() {
       </div>
     </Combobox>
     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    {/* <div>
+      {countryItinerary ? <>{countryItinerary.itineraries.map((post, index)=> (<ItineraryCard key={index} itinerary_title={post.itinerary_title} image={post.image} destination={post.destination} num_days={post.num_days}/>))}</> : <></>}
+    </div> */}
+    <div>
+      {countryItinerary ? <ItineraryCard posts={countryItinerary.itineraries}/> : <></>}
+    </div>
     <div className="header text-left text-2xl font-bold mt-20">
     Recent Itineraries
     </div>
-    {/* <ItineraryCard/> */}
+   
+   
     </div>
 
     </div>

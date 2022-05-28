@@ -5,7 +5,7 @@ const itineraries = express.Router();
 const authenticateToken = require("../utils/auth");
 const jwt = require("jsonwebtoken");
 
-itineraries.post("/searchcountry", authenticateToken, async (req, res) => {
+itineraries.post("/searchcountry", async (req, res) => {
   console.log(req.body);
   const itineraries = await prisma.itineraries.findMany({
     where: {
