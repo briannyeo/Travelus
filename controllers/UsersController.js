@@ -116,7 +116,7 @@ users.post("/login", async (req, res) => {
 //GET USER DETAILS
 users.get("/", authenticateToken, async (req, res) => {
   console.log(req.user.username);
-  const user = await prisma.jobs.findUnique({
+  const user = await prisma.user.findUnique({
     where: {
       username: req.user.username,
     },

@@ -18,7 +18,7 @@ export default function ItineraryLibrary() {
   
   console.log("selectedCountry",selectedCountry)
   console.log("countryItinerary",countryItinerary)
-  console.log("countryItinerary.itinerary",countryItinerary.itineraries)
+  //console.log("countryItinerary.itinerary",countryItinerary.itineraries)
  
   useEffect(() => {
     const showItineraries = () => {
