@@ -42,9 +42,6 @@ users.post("/seedaccount", async (req, res) => {
 
 //ADD NEW USER TO PRISMA (REGISTER)
 users.post("/register", async (req, res) => {
-  // console.log("req.body: ", req.body);
-  //console.log("password: ", req.body.password); // correct
-
   try {
     // Get user input
     const { username, password, location_based } = req.body;
@@ -79,7 +76,6 @@ users.post("/register", async (req, res) => {
 
 //LOGIN  AUTHENTICATION
 users.post("/login", async (req, res) => {
-  // Our login logic starts here
   try {
     // Get user input
     const { username, password } = req.body;
@@ -100,7 +96,6 @@ users.post("/login", async (req, res) => {
         process.env.TOKEN_SECRET,
         { expiresIn: 60 * 60 }
       );
-
       // console.log(token);
       res.cookie("cookie", token);
       // user

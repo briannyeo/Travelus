@@ -9,8 +9,8 @@ const jwt = require("jsonwebtoken");
 // });
 
 job.post("/createjob", authenticateToken, async (req, res) => {
-  console.log("req.body is", req.body);
-  console.log("user is", req.user); //{ username: 'brian', id: 1, iat: 1653625752, exp: 1653629352 }
+  //console.log("req.body is", req.body);
+  //console.log("user is", req.user); //{ username: 'brian', id: 1, iat: 1653625752, exp: 1653629352 }
 
   const jobs = await prisma.jobs.create({
     data: {
@@ -38,6 +38,24 @@ job.get("/myjobs", authenticateToken, async (req, res) => {
 job.get("/", authenticateToken, async (req, res) => {
   const allJob = await prisma.jobs.findMany();
   res.status(200).json({ allJob });
+});
+
+job.get("/:id", authenticateToken, async (req, res) => {
+  //console.log(req.params.id);
+  const job = await prisma.jobs.findUnique({
+    where: {
+      id: parseInt(req.params.id),
+    },
+    include: {
+      author: {
+        select: {
+          username: true,
+        },
+      },
+    },
+  });
+  console.log(job);
+  res.status(200).json({ job });
 });
 // const users = await prisma.user.findMany()
 
