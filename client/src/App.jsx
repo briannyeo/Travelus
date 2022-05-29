@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ItineraryRequest from "./pages/ItineraryRequest";
 import ItineraryLibrary from "./pages/ItineraryLibrary";
-import Profile from "./pages/Profile"
+import Profile from "./pages/Profile";
 import Community from "./pages/Community";
 import NoPageFound from "./pages/NoPageFound";
 import { atom, useAtom } from "jotai";
@@ -16,9 +16,9 @@ import JobDetails from "./pages/JobDetails";
 
 export const loginAtom = atom(false);
 
-const Protected = ({children}) => {
+const Protected = ({ children }) => {
   const [login, _] = useAtom(loginAtom);
-  if (login) { //made it login = false temporarily***********************
+  if (login) {
     return children;
   } else {
     return <NoPageFound />;
@@ -41,7 +41,7 @@ function App() {
                 </Protected>
               }
             />
-             <Route
+            <Route
               path="request/:id"
               element={
                 <Protected>
@@ -81,7 +81,7 @@ function App() {
                 </Protected>
               }
             />
-             <Route
+            <Route
               path="createjob"
               element={
                 <Protected>
@@ -89,13 +89,9 @@ function App() {
                 </Protected>
               }
             />
-             <Route
-              path="register"
-              element={
-                  <Register1 />               
-              }
-            />
+            <Route path="register" element={<Register1 />} />
           </Route>
+          <Route path="*" element={<NoPageFound />} />
         </Routes>
       </BrowserRouter>
     </div>
