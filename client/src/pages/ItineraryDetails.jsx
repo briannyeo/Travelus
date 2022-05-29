@@ -18,7 +18,7 @@ export default function ItineraryDetails() {
     setComment(e);
   };
 
-  //FOR FETCHING ITINERARY DETAIL AND COMMENTS
+  //FOR FETCHING ITINERARY DETAIL
   useEffect(() => {
     fetch(`/api/itinerary/${id}`, {
       method: "GET",
@@ -40,7 +40,7 @@ export default function ItineraryDetails() {
     event.preventDefault();
     createComment(comment);
     setComment("");
-    alert("comment submitted to the community");
+    alert("comment submitteD!");
     setLoad(true);
   };
 
