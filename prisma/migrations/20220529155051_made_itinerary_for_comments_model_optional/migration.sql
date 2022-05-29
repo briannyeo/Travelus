@@ -51,11 +51,11 @@ CREATE TABLE "Rating" (
 
 -- CreateTable
 CREATE TABLE "Comments" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "created_at" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "userId" INTEGER NOT NULL,
     "body" TEXT NOT NULL,
-    "itineraryId" INTEGER NOT NULL,
+    "itineraryId" INTEGER,
     "jobsId" INTEGER,
 
     CONSTRAINT "Comments_pkey" PRIMARY KEY ("id")
@@ -86,4 +86,4 @@ ALTER TABLE "Comments" ADD CONSTRAINT "Comments_userId_fkey" FOREIGN KEY ("userI
 ALTER TABLE "Comments" ADD CONSTRAINT "Comments_jobsId_fkey" FOREIGN KEY ("jobsId") REFERENCES "Jobs"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Comments" ADD CONSTRAINT "Comments_itineraryId_fkey" FOREIGN KEY ("itineraryId") REFERENCES "Itineraries"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Comments" ADD CONSTRAINT "Comments_itineraryId_fkey" FOREIGN KEY ("itineraryId") REFERENCES "Itineraries"("id") ON DELETE SET NULL ON UPDATE CASCADE;
