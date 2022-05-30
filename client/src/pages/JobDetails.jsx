@@ -97,6 +97,9 @@ export default function JobDetails() {
                   </span>
                 </Link>
               </p>
+              <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                Tip: ${jobDetail.job.pay} SGD
+              </p>
             </div>
             <div className=" px-4 py-5 sm:px-6">
               <dl className="grid grid-cols-1 sm:grid-cols-2">

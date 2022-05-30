@@ -29,7 +29,7 @@ export default function JobCard(props) {
                         </span>
                       </p>
                       <p className="text-sm font-medium text-gray-500">
-                        <div>Compensation: ${job.pay}</div>
+                        <div>Tip: ${job.pay} SGD </div>
                       </p>
                       <div className="block mt-2">
                         <p

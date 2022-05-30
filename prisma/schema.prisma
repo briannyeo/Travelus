@@ -18,6 +18,7 @@ model User {
   jobs                   Jobs[] //in controller, fetch all jobs that contain userID and save it here. Prev: Job[] OR Int[]
   //itineraries            Int[] //in controller, fetch all itineraries that contain userID and dont need save ehre
   //favourited_itineraries UserOnItineraries[]
+  //favourited_jobs        Int[]
   favourited_itineraries Int[] //Instead of line 20, in frontend when user click favourite, post itinerary id to here and save
   user_comments          Comments[]
   rating                 Rating[]
