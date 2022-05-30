@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link, Outlet, useNavigate } from "react-router-dom";
@@ -23,7 +23,26 @@ function classNames(...classes) {
 
 export default function Navbar1() {
   const [login, setLogin] = useAtom(loginAtom);
+  const [user, setUser] = useState();
   const navigate = useNavigate();
+
+  //To retrieve user
+  useEffect(() => {
+    fetch("/api/user/", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          setUser(data.user.username);
+          //console.log(data);
+        } else {
+          alert("error");
+        }
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   //To handle logout button
   const handleLogout = (event) => {
@@ -134,10 +153,11 @@ export default function Navbar1() {
                                 <div
                                   className={classNames(
                                     active ? "bg-gray-100" : "",
-                                    "block px-4 py-2 text-sm text-gray-700"
+                                    "block px-4 py-2 text-sm text-gray-500"
                                   )}
                                 >
-                                  Your Profile
+                                  <span className="text-sky-500">{user}</span>'s
+                                  profile
                                 </div>
                               </Link>
                             )}
@@ -149,7 +169,7 @@ export default function Navbar1() {
                                 onClick={handleLogout}
                                 className={classNames(
                                   active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
+                                  "block px-4 py-2 text-sm text-red-700"
                                 )}
                               >
                                 Sign out

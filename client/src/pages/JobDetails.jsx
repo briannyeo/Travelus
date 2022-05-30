@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Fragment, useEffect, useState } from "react";
 import Comments from "../components/Comments";
 
@@ -11,6 +11,7 @@ export default function JobDetails() {
   //console.log("jobDetail: ", jobDetail);
   console.log("comment: ", comment);
   console.log("allComments: ", allComments);
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const addToComment = (e) => {
@@ -82,12 +83,38 @@ export default function JobDetails() {
         <section aria-labelledby="applicant-information-title">
           <div className="bg-white shadow sm:rounded-lg m-5">
             <div className="px-4 py-5 sm:px-6">
-              <h2
-                id="applicant-information-title"
-                className="text-lg leading-6 font-medium text-gray-900"
-              >
-                {jobDetail.job.job_title}
-              </h2>
+              <div className="flex justify-between">
+                <h2
+                  id="applicant-information-title"
+                  className="text-lg leading-6 font-medium text-gray-900 space-between"
+                >
+                  {jobDetail.job.job_title}
+                </h2>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigate(`createitinerary/`);
+                  }}
+                  className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Create itinerary for {jobDetail.job.author.username}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 ml-3"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                    <path
+                      fill-rule="evenodd"
+                      d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+
               <p className="mt-1 max-w-2xl text-sm text-gray-500">
                 Posted by{" "}
                 <Link to={`/user/${jobDetail.job.authorId}`}>
@@ -102,7 +129,7 @@ export default function JobDetails() {
               </p>
             </div>
             <div className=" px-4 py-5 sm:px-6">
-              <dl className="grid grid-cols-1 sm:grid-cols-2">
+              <dl>
                 <div className="mt-1 text-small text-gray-900 mb-5">
                   {jobDetail.job.job_body}
                 </div>
@@ -114,6 +141,7 @@ export default function JobDetails() {
                 </div>
               </dl>
             </div>
+
             <Comments
               allComments={allComments}
               handleCommentSubmit={handleCommentSubmit}

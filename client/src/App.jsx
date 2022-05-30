@@ -12,6 +12,7 @@ import Createjob1 from "./pages/Createjob1";
 import ItineraryDetails from "./pages/ItineraryDetails";
 import JobDetails from "./pages/JobDetails";
 import CreateItinerary from "./pages/CreateItinerary";
+import CreateItineraryForJob from "./pages/CreateItineraryForJob";
 
 export const loginAtom = atom(false);
 
@@ -93,6 +94,14 @@ function App() {
               element={
                 <Protected>
                   <CreateItinerary />
+                </Protected>
+              }
+            />
+            <Route
+              path="request/:id/createitinerary"
+              element={
+                <Protected>
+                  <CreateItineraryForJob />
                 </Protected>
               }
             />

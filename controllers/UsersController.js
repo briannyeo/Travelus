@@ -117,7 +117,7 @@ users.get("/", authenticateToken, async (req, res) => {
       username: req.user.username,
     },
   });
-  res.status(200).json({ user });
+  res.status(200).json({ status: "success", user });
 });
 
 //UPDATE USER DETAILS

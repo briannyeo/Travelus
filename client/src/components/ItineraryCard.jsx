@@ -15,7 +15,7 @@ export default function ItineraryCard(props) {
             <div className="mt-1 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
               {posts.map((post) => (
                 <div
-                  key={post.itinerary_title}
+                  key={post.id}
                   className="flex flex-col rounded-lg shadow-lg overflow-hidden"
                 >
                   <div className="flex-shrink-0">
