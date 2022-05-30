@@ -10,6 +10,7 @@ import travelus_logo from "../images/travelus_logo.png";
 const navigation = [
   { name: "Itinerary Requests", href: "/request", current: false },
   { name: "Itinerary Library", href: "/library", current: false },
+  { name: "Create Itinerary", href: "/createitinerary", current: false },
 ];
 
 const navigationLogout = [

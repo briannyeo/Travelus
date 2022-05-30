@@ -19,10 +19,14 @@ export default function JobCard(props) {
                 >
                   <div className="flex-1 bg-white p-6 flex flex-col justify-between">
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-sky-600">
-                        <div>
+                      <p className="text-sm font-medium ">
+                        <span className="text-sky-600">
                           {job.destination} ({job.num_days} days)
-                        </div>
+                        </span>
+                        <span className="text-gray-400">
+                          {" "}
+                          - posted by @{job.author.username}
+                        </span>
                       </p>
                       <p className="text-sm font-medium text-gray-500">
                         <div>Compensation: ${job.pay}</div>
@@ -30,14 +34,11 @@ export default function JobCard(props) {
                       <div className="block mt-2">
                         <p
                           onClick={() => navigate(`/request/${job.id}`)}
-                          className="text-xl font-semibold text-gray-900 hover:text-sky-600"
+                          className="text-xl font-semibold text-gray-900 hover:text-sky-600 hover:underline"
                         >
                           {job.job_title}{" "}
                         </p>
-                        <p
-                          textOverflow="ellipsis"
-                          className="mt-3 text-base text-gray-600"
-                        >
+                        <p className="mt-3 text-base text-gray-600 truncate">
                           {job.job_body}
                         </p>
                       </div>
@@ -63,7 +64,7 @@ export default function JobCard(props) {
           </div>
         </div>
       ) : (
-        <div></div>
+        <div>No requests found</div>
       )}
     </>
   );

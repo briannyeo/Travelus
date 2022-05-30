@@ -11,6 +11,7 @@ import Register1 from "./components/Register1";
 import Createjob1 from "./pages/Createjob1";
 import ItineraryDetails from "./pages/ItineraryDetails";
 import JobDetails from "./pages/JobDetails";
+import CreateItinerary from "./pages/CreateItinerary";
 
 export const loginAtom = atom(false);
 
@@ -84,6 +85,14 @@ function App() {
               element={
                 <Protected>
                   <Createjob1 />
+                </Protected>
+              }
+            />
+            <Route
+              path="createitinerary"
+              element={
+                <Protected>
+                  <CreateItinerary />
                 </Protected>
               }
             />
