@@ -39,7 +39,15 @@ job.get("/myjobs", authenticateToken, async (req, res) => {
 
 //FOR RETRIEVING ALL AVAILABLE JOBS POSTED BY EVERYONE
 job.get("/", authenticateToken, async (req, res) => {
-  const allJob = await prisma.jobs.findMany();
+  const allJob = await prisma.jobs.findMany({
+    include: {
+      author: {
+        select: {
+          username: true,
+        },
+      },
+    },
+  });
   res.status(200).json({ allJob });
 });
 
@@ -64,9 +72,9 @@ job.get("/:id", authenticateToken, async (req, res) => {
 
 // FOR POSTING COMMENTS
 job.post("/createcomment/:id", authenticateToken, async (req, res) => {
-  console.log("post req.params.id", req.params.id);
-  console.log("post req.body ", req.body.comment);
-  console.log("post req.user.id ", req.user.id);
+  // console.log("post req.params.id", req.params.id);
+  // console.log("post req.body ", req.body.comment);
+  // console.log("post req.user.id ", req.user.id);
   // try {
   const newComment = await prisma.comments.create({
     data: {

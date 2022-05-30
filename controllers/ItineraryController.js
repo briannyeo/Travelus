@@ -8,10 +8,17 @@ const cloudinary = require("cloudinary").v2;
 
 //FOR FETCHING ITINERARIES OF PARTICULAR COUNTRY
 itineraries.post("/searchcountry", async (req, res) => {
-  console.log(req.body);
+  console.log(req.body.destination);
   const itineraries = await prisma.itineraries.findMany({
     where: {
       destination: req.body.destination,
+    },
+    include: {
+      author: {
+        select: {
+          username: true,
+        },
+      },
     },
   });
   res.status(200).json({ itineraries });

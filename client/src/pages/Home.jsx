@@ -5,22 +5,6 @@ import Login1 from "../components/Login1";
 
 const Home = () => {
   const [login, setLogin] = useAtom(loginAtom);
-  // const createAccount = (userInfo: any) => {
-  //   fetch("/api/user/seedaccount", {
-  //     method: "POST",
-  //     credentials: "include",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     //body: JSON.stringify(userInfo),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       //console.log("paginated post", data);
-  //       const user = User.parse(data);
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
 
   return (
     <>
