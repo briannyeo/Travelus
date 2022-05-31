@@ -1,11 +1,12 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { loginAtom } from "../App";
 import { useAtom } from "jotai";
 import travelus_logo from "../images/travelus_logo.png";
+import { set } from "react-hook-form";
 
 const navigation = [
   { name: "Itinerary Requests", href: "/request", current: false },
@@ -25,6 +26,7 @@ export default function Navbar1() {
   const [login, setLogin] = useAtom(loginAtom);
   const [user, setUser] = useState();
   const navigate = useNavigate();
+  console.log("user is", user);
 
   //To retrieve user
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function Navbar1() {
         }
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [login]);
 
   //To handle logout button
   const handleLogout = (event) => {
@@ -57,6 +59,7 @@ export default function Navbar1() {
           alert("You have successfully logged out!");
           //window.location.reload();
           setLogin(false);
+          setUser("");
           navigate("/");
           //code to delete the cookie here
         } else {

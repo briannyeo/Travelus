@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import countries from "../data/countries.json";
-
 import { useNavigate } from "react-router-dom";
 
 export default function Createjob1() {

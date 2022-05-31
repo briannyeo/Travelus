@@ -121,5 +121,24 @@ users.get("/", authenticateToken, async (req, res) => {
 });
 
 //UPDATE USER DETAILS
+users.post("/", authenticateToken, async (req, res) => {
+  console.log("post req.body ", req.body);
+  console.log("post req.user.id ", req.user.id);
+  // try {
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: parseInt(req.user.id),
+    },
+    data: {
+      description: req.body.description,
+      image: req.body.image,
+    },
+  });
+  console.log("user update: ", updatedUser);
+  res.status(200).json({ status: "success", updatedUser });
+  // } catch (error) {
+  //   res.status(400).json({ error: error.message });
+  // }
+});
 
 module.exports = users;
