@@ -1,15 +1,47 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const [profile, setProfile] = useState();
   const { register, handleSubmit } = useForm();
   const [imageSelected, setImageSelected] = useState();
   const [imageUrl, setImageUrl] = useState();
-  const [disable, setDisable] = useState(false);
-  console.log(imageSelected);
-  console.log(imageUrl);
+
+  const navigate = useNavigate();
+
+  const renderImage = () => {
+    if (imageSelected) {
+      return (
+        <img
+          className="inline-block h-14 w-14 rounded-full"
+          src={URL.createObjectURL(imageSelected)}
+          alt="user"
+        />
+      );
+    } else if (profile?.user.image) {
+      return (
+        <img
+          className="inline-block h-14 w-14 rounded-full"
+          src={`${profile.user.image}`}
+          alt="user"
+        />
+      );
+    } else {
+      return (
+        <span className="inline-block h-14 w-14 rounded-full overflow-hidden bg-gray-100">
+          <svg
+            className="h-full w-full text-gray-300"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </span>
+      );
+    }
+  };
 
   useEffect(() => {
     const showProfile = (profileDetails) => {
@@ -31,10 +63,25 @@ export default function Profile() {
   }, []);
 
   //UPDATE USER PROFILE
-  const onSubmit = (userInfo) => {
-    console.log(userInfo);
-    userInfo.image = imageUrl;
-    fetch("/api/user/", {
+  const onSubmit = async (userInfo) => {
+    const formData = new FormData();
+    formData.append("file", imageSelected);
+    formData.append("upload_preset", "oocipezd");
+
+    await Axios.post(
+      "https://api.cloudinary.com/v1_1/duudexfbu/image/upload",
+      formData
+    ).then((response) => {
+      console.log("response: ", response.status);
+      // console.log("response data: ", response.data);
+      console.log("response data: ", response.data.url);
+      setImageUrl(response.data.url);
+      userInfo.image = response.data.url;
+      console.log(imageUrl);
+    });
+
+    //console.log("imageUrl: ", imageUrl);
+    await fetch("/api/user/", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -52,26 +99,6 @@ export default function Profile() {
         }
       })
       .catch((error) => console.log(error));
-  };
-
-  //TO UPLOAD USER IMAGE TO CLOUDINARY
-  const uploadImage = () => {
-    // console.log("imageSelected: ", imageSelected);
-    // console.log("uploadImage clicked");
-    setDisable(true);
-    const formData = new FormData();
-    formData.append("file", imageSelected);
-    formData.append("upload_preset", "oocipezd");
-    // console.log(formData);
-
-    Axios.post(
-      "https://api.cloudinary.com/v1_1/duudexfbu/image/upload",
-      formData
-    ).then((response) => {
-      console.log("response: ", response);
-      console.log("response data: ", response.data);
-      setImageUrl(response.data.url);
-    });
   };
 
   return (
@@ -100,11 +127,11 @@ export default function Profile() {
               </label>
               <div className="mt-1 flex rounded-md shadow-sm">
                 <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
-                  @{profile?.username}
+                  @
                 </span>
                 <input
                   type="text"
-                  name={profile?.username}
+                  name={profile?.user.username}
                   {...register("username")}
                   id="username"
                   autoComplete="username"
@@ -146,70 +173,26 @@ export default function Profile() {
                 Photo
               </label>
               <div className="mt-1 flex items-center">
-                {/* <span className="h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                  <svg
-                    className="h-full w-full text-gray-300"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                </span> */}
-                {imageUrl ? (
-                  <img
-                    className="inline-block h-14 w-14 rounded-full"
-                    src={`${imageUrl}`}
-                    alt="user"
-                  />
-                ) : (
-                  <span className="inline-block h-14 w-14 rounded-full overflow-hidden bg-gray-100">
-                    <svg
-                      className="h-full w-full text-gray-300"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                  </span>
-                )}
-
+                {renderImage()}
                 <div className="border-gray-300 border-dashed rounded-md">
-                  {/* <input
-                    className=""
-                    type="file"
-                    onChange={(event) => {
-                      setImageSelected(event.target.files[0]);
-                    }}
-                  ></input>
-                  <button
-                    className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    onClick={uploadImage}
-                  >
-                    Upload image
-                  </button> */}
                   <div class="flex justify-center">
                     <div className="mb-3 w-96">
                       <label
                         for="formFileSm"
                         class="form-label inline-block mb-2 text-gray-700"
                       >
-                        Select image for profile photo
+                        Select image for profile photo (png or jpeg)
                       </label>
+
                       <input
                         className="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         id="formFileSm"
                         type="file"
+                        accept="image/png, image/jpeg"
                         onChange={(event) => {
                           setImageSelected(event.target.files[0]);
                         }}
                       ></input>
-                      <button
-                        className="text-sm border border-solid border-gray-300"
-                        onClick={uploadImage}
-                        disabled={disable}
-                      >
-                        Upload image
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -222,6 +205,7 @@ export default function Profile() {
       <div className="pt-5">
         <div className="flex justify-end">
           <button
+            onClick={() => navigate("/")}
             type="button"
             className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
