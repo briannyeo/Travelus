@@ -58,20 +58,20 @@ const Home = () => {
       {login ? (
         <div>
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col">
-            <div className="flex-row flex">
-              <div className="max-w-3xl mx-auto bg-gray-100">
-                <div className="text-3xl font-bold">Your trips</div>
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                  <MyJob jobs={userJobs} />
-                </div>
-              </div>
-              <div className="max-w-3xl mx-auto bg-gray-100">
-                <div className="text-3xl font-bold">Your itineraries</div>
-                <div className="max-w-5xl mx-auto sm:px-6 lg:px-8 ">
-                  <MyItinerary posts={userItineraries?.itineraries} />
-                </div>
+            {/* <div className="flex"> */}
+            <div className="max-w-3xl mx-auto bg-gray-100">
+              <div className="text-3xl font-bold">Your trips</div>
+              <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <MyJob jobs={userJobs} />
               </div>
             </div>
+            <div className="max-w-3xl mx-auto bg-gray-100">
+              <div className="text-3xl font-bold">Your itineraries</div>
+              <div className="max-w-5xl mx-auto sm:px-6 lg:px-8 ">
+                <MyItinerary posts={userItineraries?.itineraries} />
+              </div>
+            </div>
+            {/* </div> */}
             <div className="container mx-auto sm:px-6 lg:px-8">
               <div className="text-3xl font-bold text-center">
                 Saved Itineraries

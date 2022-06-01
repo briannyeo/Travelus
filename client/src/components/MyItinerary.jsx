@@ -12,11 +12,11 @@ export default function MyItinerary(props) {
       {posts ? (
         <div className="relative bg-gray-50 mt-10 pt-20 pb-10 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
           <div className="relative max-w-4xl  mx-auto">
-            <div className="mt-1 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none overflow-x-auto">
+            <div className="flex flex-no-wrap overflow-x-scroll scrolling-touch items-start mb-8 ">
               {posts?.map((post) => (
                 <div
                   key={post.id}
-                  className="flex flex-col rounded-lg shadow-lg overflow-hidden"
+                  className="flex-none w-2/3 md:w-1/3 mr-8 md:pb-4 border rounded-lg"
                 >
                   <div className="flex-shrink-0">
                     <img
