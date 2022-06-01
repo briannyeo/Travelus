@@ -7,7 +7,7 @@ export default function Profile() {
   const [profile, setProfile] = useState();
   const { register, handleSubmit } = useForm();
   const [imageSelected, setImageSelected] = useState();
-  const [imageUrl, setImageUrl] = useState();
+  console.log(imageSelected);
 
   const navigate = useNavigate();
 
@@ -65,19 +65,17 @@ export default function Profile() {
   //UPDATE USER PROFILE
   const onSubmit = async (userInfo) => {
     const formData = new FormData();
+
     formData.append("file", imageSelected);
     formData.append("upload_preset", "oocipezd");
-
+    console.log(formData);
     await Axios.post(
       "https://api.cloudinary.com/v1_1/duudexfbu/image/upload",
       formData
     ).then((response) => {
-      console.log("response: ", response.status);
-      // console.log("response data: ", response.data);
       console.log("response data: ", response.data.url);
-      setImageUrl(response.data.url);
+
       userInfo.image = response.data.url;
-      console.log(imageUrl);
     });
 
     //console.log("imageUrl: ", imageUrl);

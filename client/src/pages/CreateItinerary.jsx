@@ -1,19 +1,43 @@
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import countries from "../data/countries.json";
 import { useNavigate } from "react-router-dom";
+//import Axios from "axios";
+import UploadWidget from "../components/UploadWidget";
 
 export default function CreateItinerary() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const [imageUrls, setImageUrls] = useState([]);
 
-  //   const onSubmit = (data) => {
-  //     data.isprivate = false;
-  //     console.log(data);
-  //   };
+  //const [imageSelected, setImageSelected] = useState();
+  //console.log(imageSelected[0]);
 
-  const onSubmit = (itineraryinfo) => {
-    console.log(itineraryinfo);
-    fetch("/api/itinerary/createitinerary", {
+  // function handleImages(e) {
+  //   setImageSelected([...e.target.files]);
+  // }
+
+  // useEffect(() => {
+  //   if (imageSelected < 1) return;
+  //   const newImageUrls = [];
+  //   imageSelected?.forEach((image) =>
+  //     newImageUrls.push(URL.createObjectURL(image))
+  //   );
+  //   setImageUrls(newImageUrls);
+  // }, [imageSelected]);
+
+  const addImagesURL = (url) => {
+    setImageUrls(url);
+    console.log("imageUrls: ", imageUrls);
+  };
+
+  const onSubmit = async (itineraryinfo) => {
+    console.log("itineraryinfo", itineraryinfo);
+    const addImageToItineraries = () => {
+      itineraryinfo.image = imageUrls;
+    };
+    addImageToItineraries();
+    await fetch("/api/itinerary/createitinerary", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -96,21 +120,18 @@ export default function CreateItinerary() {
                 </div>
               </div>
               <div className="flex text-sm text-gray-600">
-                <label
-                  htmlFor="file-upload"
-                  className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                >
-                  <span>Upload a file</span>
-                  <input
-                    id="file-upload"
-                    name="file-upload"
-                    type="file"
-                    // className="sr-only"
-                    accept="image/png, image/jpeg"
-                  />
-                </label>
+                <UploadWidget addImagesURL={addImagesURL} />
+                <div className="flex">
+                  {imageUrls?.map((imageSrc) => (
+                    <img
+                      className=" mr-3 inline-block h-14 w-14 "
+                      src={imageSrc}
+                      alt="itinerarypics"
+                    />
+                  ))}
+                </div>
               </div>
-              <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+              <p className="text-xs text-gray-500">PNG, JPG</p>
               <div>
                 <button
                   type="submit"
