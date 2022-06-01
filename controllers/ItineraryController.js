@@ -25,6 +25,24 @@ itineraries.post("/searchcountry", async (req, res) => {
   res.status(200).json({ itineraries });
 });
 
+//FOR GETTING ALL ITINERARIES POSTED BY USER
+itineraries.get("/myitineraries/all", authenticateToken, async (req, res) => {
+  //console.log(req.body.username);
+  const itineraries = await prisma.itineraries.findMany({
+    where: {
+      authorId: parseInt(req.user.id),
+    },
+    include: {
+      author: {
+        select: {
+          username: true,
+        },
+      },
+    },
+  });
+  res.status(200).json({ itineraries });
+});
+
 //FOR POSTING ITINERARY TO COMMUNITY
 itineraries.post("/createitinerary", authenticateToken, async (req, res) => {
   console.log("post req.body ", req.body);
@@ -77,7 +95,7 @@ itineraries.post(
 
 //FOR FETCHING ITINERARY DETAIL
 itineraries.get("/:id", authenticateToken, async (req, res) => {
-  //console.log(req.params.id);
+  console.log(req.params.id);
   const itinerary = await prisma.itineraries.findUnique({
     where: {
       id: parseInt(req.params.id),

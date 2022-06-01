@@ -10,22 +10,6 @@ export default function CreateItinerary() {
   const navigate = useNavigate();
   const [imageUrls, setImageUrls] = useState([]);
 
-  //const [imageSelected, setImageSelected] = useState();
-  //console.log(imageSelected[0]);
-
-  // function handleImages(e) {
-  //   setImageSelected([...e.target.files]);
-  // }
-
-  // useEffect(() => {
-  //   if (imageSelected < 1) return;
-  //   const newImageUrls = [];
-  //   imageSelected?.forEach((image) =>
-  //     newImageUrls.push(URL.createObjectURL(image))
-  //   );
-  //   setImageUrls(newImageUrls);
-  // }, [imageSelected]);
-
   const addImagesURL = (url) => {
     setImageUrls(url);
     console.log("imageUrls: ", imageUrls);
@@ -33,10 +17,12 @@ export default function CreateItinerary() {
 
   const onSubmit = async (itineraryinfo) => {
     console.log("itineraryinfo", itineraryinfo);
-    const addImageToItineraries = () => {
-      itineraryinfo.image = imageUrls;
-    };
-    addImageToItineraries();
+    // const addImageToItineraries = () => {
+    //   itineraryinfo.image = imageUrls;
+    // };
+    // addImageToItineraries();
+
+    itineraryinfo.image = imageUrls;
     await fetch("/api/itinerary/createitinerary", {
       method: "POST",
       credentials: "include",

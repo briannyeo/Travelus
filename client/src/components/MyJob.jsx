@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export default function JobCard(props) {
+export default function MyJob(props) {
   const { jobs } = props;
   console.log("jobs", jobs);
 

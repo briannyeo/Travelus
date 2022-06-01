@@ -31,15 +31,8 @@ job.get("/myjobs", authenticateToken, async (req, res) => {
   //console.log(req.body.username);
   const jobs = await prisma.jobs.findMany({
     where: {
-      author: req.user.username,
+      authorId: parseInt(req.user.id),
     },
-  });
-  res.status(200).json({ jobs });
-});
-
-//FOR RETRIEVING ALL AVAILABLE JOBS POSTED BY EVERYONE
-job.get("/", authenticateToken, async (req, res) => {
-  const allJob = await prisma.jobs.findMany({
     include: {
       author: {
         select: {
@@ -48,7 +41,21 @@ job.get("/", authenticateToken, async (req, res) => {
       },
     },
   });
-  res.status(200).json({ allJob });
+  res.status(200).json({ jobs });
+});
+
+//FOR RETRIEVING ALL AVAILABLE JOBS POSTED BY EVERYONE
+job.get("/", authenticateToken, async (req, res) => {
+  const jobs = await prisma.jobs.findMany({
+    include: {
+      author: {
+        select: {
+          username: true,
+        },
+      },
+    },
+  });
+  res.status(200).json({ jobs });
 });
 
 //FOR FETCHING JOB DETAIL
