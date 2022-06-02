@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
-    "client:install": "cd client && npm ci --production=false",
+    "client:install": "cd client && npm ci",
     "client:build": "cd client && npm run build",
     "heroku-postbuild": "npm run client:install && npm run client:build"
   },
