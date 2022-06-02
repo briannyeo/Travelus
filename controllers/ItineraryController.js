@@ -47,22 +47,24 @@ itineraries.get("/myitineraries/all", authenticateToken, async (req, res) => {
 itineraries.post("/createitinerary", authenticateToken, async (req, res) => {
   console.log("post req.body ", req.body);
   console.log("post req.user.id ", req.user.id);
-  try {
-    const newItinerary = await prisma.itineraries.create({
-      data: {
-        authorId: parseInt(req.user.id),
-        destination: req.body.destination,
-        num_days: req.body.num_days,
-        itinerary_title: req.body.itinerary_title,
-        itinerary_body: req.body.itinerary_body,
-        isprivate: false,
-      },
-    });
-    console.log(newItinerary);
-    res.status(200).json({ status: "success", newItinerary });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+  console.log("req.body.image", req.body.image);
+  // try {
+  const newItinerary = await prisma.itineraries.create({
+    data: {
+      authorId: parseInt(req.user.id),
+      destination: req.body.destination,
+      num_days: req.body.num_days,
+      itinerary_title: req.body.itinerary_title,
+      itinerary_body: req.body.itinerary_body,
+      isprivate: false,
+      image: req.body.image,
+    },
+  });
+  console.log(newItinerary);
+  res.status(200).json({ status: "success", newItinerary });
+  // } catch (error) {
+  //   res.status(400).json({ error: error.message });
+  // }
 });
 
 //FOR POSTING ITINERARY TO JOB POST
@@ -81,6 +83,7 @@ itineraries.post(
           num_days: req.body.num_days,
           itinerary_title: req.body.itinerary_title,
           itinerary_body: req.body.itinerary_body,
+          image: req.body.image,
           isprivate: req.body.isprivate,
           jobsId: parseInt(req.body.jobsId),
         },

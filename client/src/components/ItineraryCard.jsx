@@ -21,7 +21,7 @@ export default function ItineraryCard(props) {
                   <div className="flex-shrink-0">
                     <img
                       className="h-48 w-full object-cover"
-                      src={post.image ? post.image : placeholder_image}
+                      src={post.image ? post.image[0] : placeholder_image}
                       alt="destination"
                     />
                   </div>

@@ -1,5 +1,7 @@
+import { useState } from "react";
 import React from "react";
 const UploadWidget = ({ addImagesURL }) => {
+  //const [srcArr, setSrcArr] = useState([]);
   const srcArr = [];
   const showWidget = () => {
     let widget = window.cloudinary.createUploadWidget(
@@ -11,8 +13,9 @@ const UploadWidget = ({ addImagesURL }) => {
         if (!error && result && result.event === "success") {
           console.log(result.info.url);
           srcArr.push(result.info.url);
+          //setSrcArr();
           console.log("srcArr", srcArr);
-          await addImagesURL(srcArr);
+          addImagesURL([...srcArr]);
         }
       }
     );

@@ -7,7 +7,8 @@ export default function Profile() {
   const [profile, setProfile] = useState();
   const { register, handleSubmit } = useForm();
   const [imageSelected, setImageSelected] = useState();
-  console.log(imageSelected);
+  //console.log(imageSelected);
+  //console.log(profile.user.description);
 
   const navigate = useNavigate();
 
@@ -64,39 +65,59 @@ export default function Profile() {
 
   //UPDATE USER PROFILE
   const onSubmit = async (userInfo) => {
-    const formData = new FormData();
+    if (imageSelected) {
+      const formData = new FormData();
+      formData.append("file", imageSelected);
+      formData.append("upload_preset", "oocipezd");
+      console.log(formData);
+      await Axios.post(
+        "https://api.cloudinary.com/v1_1/duudexfbu/image/upload",
+        formData
+      ).then((response) => {
+        console.log("response data: ", response.data.url);
 
-    formData.append("file", imageSelected);
-    formData.append("upload_preset", "oocipezd");
-    console.log(formData);
-    await Axios.post(
-      "https://api.cloudinary.com/v1_1/duudexfbu/image/upload",
-      formData
-    ).then((response) => {
-      console.log("response data: ", response.data.url);
+        userInfo.image = response.data.url;
+      });
 
-      userInfo.image = response.data.url;
-    });
-
-    //console.log("imageUrl: ", imageUrl);
-    await fetch("/api/user/", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status === "success") {
-          alert("Your profile has been updated");
-          //navigate(`/request`);
-        } else {
-          alert("Profile update failed, please try again!");
-        }
+      //console.log("imageUrl: ", imageUrl);
+      await fetch("/api/user/", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
       })
-      .catch((error) => console.log(error));
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "success") {
+            alert("Your profile has been updated");
+            navigate(`/`);
+          } else {
+            alert("Profile update failed, please try again!");
+          }
+        })
+        .catch((error) => console.log(error));
+    } else {
+      fetch("/api/user/", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "success") {
+            alert("Your profile has been updated");
+            navigate(`/`);
+          } else {
+            alert("Profile update failed, please try again!");
+          }
+        })
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
