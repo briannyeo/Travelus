@@ -19,11 +19,7 @@ const UploadWidget = ({ addImagesURL }) => {
     widget.open();
   };
 
-  return (
-    <div>
-      <button onClick={() => showWidget}> Upload Image </button>
-    </div>
-  );
+  return <span onClick={showWidget}> Upload Image </span>;
 };
 
 export default UploadWidget;

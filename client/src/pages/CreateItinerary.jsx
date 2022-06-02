@@ -16,6 +16,7 @@ export default function CreateItinerary() {
   };
 
   const onSubmit = async (itineraryinfo) => {
+    // event.preventDefault();
     console.log("itineraryinfo", itineraryinfo);
     // const addImageToItineraries = () => {
     //   itineraryinfo.image = imageUrls;
