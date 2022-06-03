@@ -10,8 +10,8 @@ const Home = () => {
   const [userJobs, setUserJobs] = useState();
   const [userItineraries, setUserItineraries] = useState();
 
-  console.log("userJobs:", userJobs);
-  console.log("userItineraries", userItineraries);
+  // console.log("userJobs:", userJobs);
+  // console.log("userItineraries", userItineraries);
 
   //RETRIEVE JOBS THAT USER POSTED
   useEffect(() => {
@@ -57,9 +57,9 @@ const Home = () => {
     <>
       {login ? (
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col">
-          <div className="text-3xl font-bold text-center">Your trips</div>
+          <div className="text-3xl font-bold text-center mt-10">Your trips</div>
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <MyJob jobs={userJobs.jobs} />
+            <MyJob jobs={userJobs?.jobs} />
           </div>
 
           <div className="text-3xl font-bold text-center">Your itineraries</div>

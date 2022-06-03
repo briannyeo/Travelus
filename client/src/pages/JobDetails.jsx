@@ -96,7 +96,7 @@ export default function JobDetails() {
                   onClick={() => {
                     navigate(`createitinerary/`);
                   }}
-                  className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                 >
                   Create itinerary for {jobDetail.job.author.username}
                   <svg
@@ -132,12 +132,6 @@ export default function JobDetails() {
               <dl>
                 <div className="mt-1 text-small text-gray-900 mb-5">
                   {jobDetail.job.job_body}
-                </div>
-                <div className="sm:col-span-2">
-                  <dt className="text-sm font-medium text-gray-500 border-t pt-3 border-gray-200">
-                    Attachments:
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900"></dd>
                 </div>
               </dl>
             </div>

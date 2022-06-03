@@ -6,7 +6,7 @@ import MyJob from "../components/MyJob";
 export default function ViewProfile() {
   const { id } = useParams();
   const [userDetails, setUserDetails] = useState();
-  console.log("viewprofile", userDetails.user.jobs);
+  //console.log("viewprofile", userDetails.user.jobs);
 
   //Retrieving User Info
   useEffect(() => {

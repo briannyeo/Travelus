@@ -14,10 +14,6 @@ const navigation = [
   { name: "Create Itinerary", href: "/createitinerary", current: false },
 ];
 
-const navigationLogout = [
-  { name: "Register", href: "/register", current: false },
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -248,51 +244,14 @@ export default function Navbar1() {
                       </Link>
                     </div>
                     <div className="hidden sm:block sm:ml-6">
-                      <div className="flex space-x-4">
-                        {navigationLogout.map((item) => (
-                          <Link to={`${item.href}`}>
-                            <div
-                              key={item.name}
-                              // href={item.href}
-                              className={classNames(
-                                item.current
-                                  ? "bg-gray-900 text-white"
-                                  : "text-zinc-800 hover:text-sky-600",
-                                "px-3 py-2 rounded-md text-sm font-medium"
-                              )}
-                              aria-current={item.current ? "page" : undefined}
-                            >
-                              {item.name}
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
+                      <div className="flex space-x-4"></div>
                     </div>
                   </div>
                 </div>
               </div>
 
               <Disclosure.Panel className="sm:hidden">
-                <div className="px-2 pt-2 pb-3 space-y-1">
-                  {navigationLogout.map((item) => (
-                    <Link to={`${item.href}`}>
-                      <Disclosure.Button
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "block px-3 py-2 rounded-md text-base font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </Disclosure.Button>
-                    </Link>
-                  ))}
-                </div>
+                <div className="px-2 pt-2 pb-3 space-y-1"></div>
               </Disclosure.Panel>
             </>
           )}

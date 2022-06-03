@@ -28,7 +28,7 @@ const ItineraryRequest = () => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="header text-center text-5xl font-bold mt-5">
+      <div className="header text-center text-5xl font-bold mt-20">
         Itinerary Requests
       </div>
       <div className="header text-center text-2xl font-bold mt-5 ">

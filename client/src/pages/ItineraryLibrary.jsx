@@ -45,16 +45,21 @@ export default function ItineraryLibrary() {
 
   return (
     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div className="header text-center text-5xl font-bold mt-5">
+      <div className="header text-center text-5xl font-bold mt-14 mb-14">
         Explore travel guides and itineraries
       </div>
-      <Combobox as="div" value={selectedCountry} onChange={setSelectedCountry}>
+      <Combobox
+        as="div"
+        className="w-2/3 mx-auto"
+        value={selectedCountry}
+        onChange={setSelectedCountry}
+      >
         <Combobox.Label className="max-w-screen-sm block text-sm font-medium text-gray-700">
           Search for a destination
         </Combobox.Label>
         <div className="relative mt-1">
           <Combobox.Input
-            className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+            className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
             onChange={(event) => setQuery(event.target.value)}
             displayValue={(country) => country?.name}
           />
@@ -75,7 +80,7 @@ export default function ItineraryLibrary() {
                   className={({ active }) =>
                     classNames(
                       "relative cursor-default select-none py-2 pl-3 pr-9",
-                      active ? "bg-indigo-600 text-white" : "text-gray-900"
+                      active ? "bg-sky-600 text-white" : "text-gray-900"
                     )
                   }
                 >
@@ -94,7 +99,7 @@ export default function ItineraryLibrary() {
                         <span
                           className={classNames(
                             "absolute inset-y-0 right-0 flex items-center pr-4",
-                            active ? "text-white" : "text-indigo-600"
+                            active ? "text-white" : "text-sky-600"
                           )}
                         >
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
