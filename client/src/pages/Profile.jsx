@@ -196,10 +196,7 @@ export default function Profile() {
                 <div className="border-gray-300 border-dashed rounded-md">
                   <div class="flex justify-center">
                     <div className="mb-3 w-96">
-                      <label
-                        for="formFileSm"
-                        class="form-label inline-block mb-2 text-gray-700"
-                      >
+                      <label class="form-label inline-block mb-2 text-gray-700">
                         Select image for profile photo (png or jpeg)
                       </label>
 

@@ -13,7 +13,7 @@ export default function ItineraryLibrary() {
   const [selectedCountry, setSelectedCountry] = useState();
   const [countryItinerary, setCountryItinerary] = useState({});
 
-  console.log("selectedCountry", selectedCountry);
+  //console.log("selectedCountry", selectedCountry);
   //console.log("countryItinerary",countryItinerary)
   //console.log("countryItinerary.itinerary",countryItinerary.itineraries)
 

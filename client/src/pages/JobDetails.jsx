@@ -9,8 +9,8 @@ export default function JobDetails() {
   const [allComments, setAllComments] = useState();
 
   //console.log("jobDetail: ", jobDetail);
-  console.log("comment: ", comment);
-  console.log("allComments: ", allComments);
+  // console.log("comment: ", comment);
+  // console.log("allComments: ", allComments);
   const navigate = useNavigate();
   const { id } = useParams();
 

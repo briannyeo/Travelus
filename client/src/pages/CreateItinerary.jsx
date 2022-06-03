@@ -16,7 +16,7 @@ export default function CreateItinerary() {
   //   setModal(!modal);
   // };
 
-  const openModal = () => {};
+  // const openModal = () => {};
 
   const addImagesURL = (url) => {
     setImageUrls(url);
@@ -126,7 +126,7 @@ export default function CreateItinerary() {
                         alt="itinerarypics"
                         // onClick={openModal}
                       />
-                      <ImageModal />
+                      {/* <ImageModal /> */}
                     </div>
                   ))}
                 </div>

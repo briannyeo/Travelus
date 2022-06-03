@@ -126,7 +126,7 @@ export default function Navbar1() {
                           <span className="sr-only">Open user menu</span>
                           <span className="inline-block h-8 w-8 rounded-full overflow-hidden bg-gray-100">
                             {user.image ? (
-                              <img src={user.image} alt="img" />
+                              <img src={user?.image} alt="img" />
                             ) : (
                               <svg
                                 className="h-full w-full text-gray-300"

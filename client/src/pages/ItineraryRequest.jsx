@@ -5,7 +5,7 @@ import JobCard from "../components/JobCard";
 
 const ItineraryRequest = () => {
   const [jobs, setJobs] = useState({});
-  console.log(jobs);
+  //console.log(jobs);
 
   useEffect(() => {
     const showJobs = (jobEntry) => {
