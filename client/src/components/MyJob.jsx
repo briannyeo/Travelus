@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function MyJob(props) {
   const { jobs } = props;
-  console.log("hello", jobs);
+  // console.log("hello", jobs);
 
   const navigate = useNavigate();
 
