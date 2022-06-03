@@ -4,7 +4,7 @@ import ItinerarySubmissions from "../components/ItinerarySubmissions";
 
 export default function JobResponses() {
   const [jobDetail, setJobDetail] = useState();
-  console.log(jobDetail.job);
+  //console.log(jobDetail.job);
   const { id } = useParams();
 
   useEffect(() => {

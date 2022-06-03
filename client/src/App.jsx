@@ -14,6 +14,7 @@ import JobDetails from "./pages/JobDetails";
 import CreateItinerary from "./pages/CreateItinerary";
 import CreateItineraryForJob from "./pages/CreateItineraryForJob";
 import JobResponses from "./pages/JobResponses";
+import ViewProfile from "./pages/ViewProfile";
 
 export const loginAtom = atom(false);
 
@@ -111,6 +112,14 @@ function App() {
               element={
                 <Protected>
                   <JobResponses />
+                </Protected>
+              }
+            />
+            <Route
+              path="user/:id"
+              element={
+                <Protected>
+                  <ViewProfile />
                 </Protected>
               }
             />

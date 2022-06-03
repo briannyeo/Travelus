@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function MyJob(props) {
   const { jobs } = props;
+  console.log("hello", jobs);
 
   const navigate = useNavigate();
 
@@ -11,7 +12,7 @@ export default function MyJob(props) {
         <div className="relative  mt-10 pt-20 pb-10 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
           <div className="relative max-w-4xl mx-auto">
             <div className="flex flex-no-wrap overflow-x-scroll scrolling-touch items-start mb-8">
-              {jobs.jobs?.map((job, index) => (
+              {jobs.map((job, index) => (
                 <div
                   key={index}
                   className="flex-none w-2/3 md:w-1/3 mr-8 md:pb-4 border rounded-lg"

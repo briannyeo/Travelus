@@ -59,7 +59,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col">
           <div className="text-3xl font-bold text-center">Your trips</div>
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <MyJob jobs={userJobs} />
+            <MyJob jobs={userJobs.jobs} />
           </div>
 
           <div className="text-3xl font-bold text-center">Your itineraries</div>

@@ -120,6 +120,25 @@ users.get("/", authenticateToken, async (req, res) => {
   res.status(200).json({ status: "success", user });
 });
 
+//GET USER DETAILS (OTHER PEOPLE)
+users.get("/:id", authenticateToken, async (req, res) => {
+  console.log(req.params.id);
+  const user = await prisma.user.findUnique({
+    where: {
+      id: parseInt(req.params.id),
+    },
+    include: {
+      proposal_itineraries: {
+        where: {
+          isprivate: false,
+        },
+      },
+      jobs: true,
+    },
+  });
+  res.status(200).json({ status: "success", user });
+});
+
 //UPDATE USER DETAILS
 users.post("/", authenticateToken, async (req, res) => {
   console.log("post req.body ", req.body);
