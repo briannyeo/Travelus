@@ -147,6 +147,7 @@ itineraries.get("/comments/:id", authenticateToken, async (req, res) => {
       author: {
         select: {
           username: true,
+          image: true,
         },
       },
       // comments: true,

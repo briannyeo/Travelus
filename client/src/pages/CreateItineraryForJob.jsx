@@ -1,16 +1,19 @@
 import { useForm } from "react-hook-form";
-import countries from "../data/countries.json";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, Fragment } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationIcon, XIcon } from "@heroicons/react/outline";
+import UploadWidget from "../components/UploadWidget";
 
 export default function CreateItineraryForJob() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const [jobDetail, setJobDetail] = useState();
+  const [imageUrls, setImageUrls] = useState([]);
   const { id } = useParams();
-  //console.log(id);
+
+  const addImagesURL = (url) => {
+    setImageUrls(url);
+    console.log("imageUrls: ", imageUrls);
+  };
 
   //FOR FETCHING JOB DETAIL
   useEffect(() => {
@@ -28,7 +31,7 @@ export default function CreateItineraryForJob() {
       .catch((error) => console.log(error));
   }, [id]);
 
-  const onSubmit = (itineraryinfo) => {
+  const onSubmit = async (itineraryinfo) => {
     itineraryinfo.destination = jobDetail.job.destination;
     itineraryinfo.num_days = jobDetail.job.num_days;
     itineraryinfo.jobsId = jobDetail.job.id;
@@ -103,23 +106,18 @@ export default function CreateItineraryForJob() {
                   </div>
                 </div>
                 <div className="flex text-sm text-gray-600">
-                  <label
-                    htmlFor="file-upload"
-                    className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                  >
-                    <span>Upload a file</span>
-                    <input
-                      id="file-upload"
-                      name="file-upload"
-                      type="file"
-                      className="sr-only"
-                    />
-                  </label>
-                  <p className="pl-1">or drag and drop</p>
+                  <UploadWidget addImagesURL={addImagesURL} />
+                  <div className="flex">
+                    {imageUrls?.map((imageSrc) => (
+                      <img
+                        className=" mr-3 inline-block h-14 w-14 "
+                        src={imageSrc}
+                        alt="itinerarypics"
+                      />
+                    ))}
+                  </div>
                 </div>
-                <p className="text-xs text-gray-500">
-                  PNG, JPG, GIF up to 10MB
-                </p>
+                <p className="text-xs text-gray-500">PNG, JPG</p>
                 <div>
                   <button
                     type="submit"

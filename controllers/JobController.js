@@ -39,6 +39,7 @@ job.get("/myjobs", authenticateToken, async (req, res) => {
           username: true,
         },
       },
+      itinerary: true,
     },
   });
   res.status(200).json({ jobs });
@@ -69,6 +70,15 @@ job.get("/:id", authenticateToken, async (req, res) => {
       author: {
         select: {
           username: true,
+        },
+      },
+      itinerary: {
+        include: {
+          author: {
+            select: {
+              username: true,
+            },
+          },
         },
       },
     },

@@ -10,7 +10,7 @@ export default function ItineraryCard(props) {
   return (
     <>
       {posts ? (
-        <div className="relative bg-gray-50 mt-10 pt-20 pb-10 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+        <div className="relative  mt-10 pt-20 pb-10 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
           <div className="relative max-w-4xl  mx-auto">
             <div className="mt-1 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none overflow-x-auto">
               {posts?.map((post) => (
@@ -21,7 +21,7 @@ export default function ItineraryCard(props) {
                   <div className="flex-shrink-0">
                     <img
                       className="h-48 w-full object-cover"
-                      src={post.image ? post.image[0] : placeholder_image}
+                      src={post.image[0] ? post.image[0] : placeholder_image}
                       alt="destination"
                     />
                   </div>

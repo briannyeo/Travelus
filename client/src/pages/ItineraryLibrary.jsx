@@ -119,9 +119,9 @@ export default function ItineraryLibrary() {
             <></>
           )}
         </div>
-        <div className="header text-left text-2xl font-bold mt-20">
+        {/* <div className="header text-left text-2xl font-bold mt-20">
           Recent Itineraries
-        </div>
+        </div> */}
       </div>
     </div>
   );

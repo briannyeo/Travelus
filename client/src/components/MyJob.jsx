@@ -1,15 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function MyJob(props) {
   const { jobs } = props;
-  console.log("jobs", jobs);
 
   const navigate = useNavigate();
 
   return (
     <>
       {jobs ? (
-        <div className="relative bg-gray-50 mt-10 pt-20 pb-10 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+        <div className="relative  mt-10 pt-20 pb-10 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
           <div className="relative max-w-4xl mx-auto">
             <div className="flex flex-no-wrap overflow-x-scroll scrolling-touch items-start mb-8">
               {jobs.jobs?.map((job, index) => (
@@ -22,10 +21,6 @@ export default function MyJob(props) {
                       <p className="text-sm font-medium ">
                         <span className="text-sky-600">
                           {job.destination} ({job.num_days} days)
-                        </span>
-                        <span className="text-gray-400">
-                          {" "}
-                          - posted by @{job.author.username}
                         </span>
                       </p>
                       <p className="text-sm font-medium text-gray-500">
@@ -55,6 +50,11 @@ export default function MyJob(props) {
                             {job.created_at.split("T")[0]}
                           </time>
                         </div>
+                        <Link to={`/jobresponses/${job.id}`}>
+                          <div className="flex text-sm text-gray-400 hover:text-sky-600 hover:underline">
+                            Submitted Itineraries: {job.itinerary.length}
+                          </div>
+                        </Link>
                       </div>
                     </div>
                   </div>

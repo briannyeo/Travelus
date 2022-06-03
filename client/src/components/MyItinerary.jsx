@@ -10,18 +10,18 @@ export default function MyItinerary(props) {
   return (
     <>
       {posts ? (
-        <div className="relative bg-gray-50 mt-10 pt-20 pb-10 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+        <div className="relative mt-10 pt-20 pb-10 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
           <div className="relative max-w-4xl  mx-auto">
             <div className="flex flex-no-wrap overflow-x-scroll scrolling-touch items-start mb-8 ">
               {posts?.map((post) => (
                 <div
                   key={post.id}
-                  className="flex-none w-2/3 md:w-1/3 mr-8 md:pb-4 border rounded-lg"
+                  className="flex-none w-1/3 mr-8 md:pb-4 border rounded-lg"
                 >
                   <div className="flex-shrink-0">
                     <img
                       className="h-48 w-full object-cover"
-                      src={post.image ? post.image[0] : placeholder_image}
+                      src={post.image[0] ? post.image[0] : placeholder_image}
                       alt="destination"
                     />
                   </div>
@@ -30,10 +30,6 @@ export default function MyItinerary(props) {
                       <p className="text-sm font-medium ">
                         <span className="text-sky-600">
                           {post.destination} ({post.num_days} day itinerary)
-                        </span>
-                        <span className="text-gray-400">
-                          {" "}
-                          - posted by @{post.author.username}
                         </span>
                       </p>
 
