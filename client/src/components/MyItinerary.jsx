@@ -3,7 +3,7 @@ import placeholder_image from "../images/placeholder_image.jpg";
 
 export default function MyItinerary(props) {
   const { posts } = props;
-  console.log("posts", posts);
+  //("posts", posts);
 
   const navigate = useNavigate();
 

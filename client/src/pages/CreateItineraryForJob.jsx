@@ -36,7 +36,7 @@ export default function CreateItineraryForJob() {
     itineraryinfo.num_days = jobDetail.job.num_days;
     itineraryinfo.jobsId = jobDetail.job.id;
     itineraryinfo.isprivate = true;
-    console.log(itineraryinfo);
+    //console.log(itineraryinfo);
     fetch("/api/itinerary/create/newitinerary", {
       method: "POST",
       credentials: "include",
