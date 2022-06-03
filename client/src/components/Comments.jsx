@@ -66,7 +66,7 @@ export default function Comments(props) {
                 <div className="flex-shrink-0">
                   {/* <img
                     className="h-10 w-10 rounded-full"
-                    // src={user.imageUrl}
+                    src={user.imageUrl}
                     alt="user"
                   /> */}
                   <span className="inline-block h-8 w-8 rounded-full overflow-hidden bg-gray-100">

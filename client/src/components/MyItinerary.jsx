@@ -16,11 +16,11 @@ export default function MyItinerary(props) {
               {posts?.map((post) => (
                 <div
                   key={post.id}
-                  className="flex-none w-2/3 mr-8 md:pb-4 border rounded-lg"
+                  className="flex-none w-1/3 mr-8 md:pb-4 border rounded-lg"
                 >
                   <div className="flex-shrink-0">
                     <img
-                      className="h-48 w-full object-cover"
+                      className="h-40 w-full object-cover"
                       src={post.image[0] ? post.image[0] : placeholder_image}
                       alt="destination"
                     />
