@@ -3,11 +3,20 @@ import { useForm } from "react-hook-form";
 import countries from "../data/countries.json";
 import { useNavigate } from "react-router-dom";
 import UploadWidget from "../components/UploadWidget";
+import ImageModal from "../components/ImageModal";
 
 export default function CreateItinerary() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const [imageUrls, setImageUrls] = useState([]);
+
+  // const [modal, setmodal] = useState(false);
+
+  // const toggleModal = () => {
+  //   setModal(!modal);
+  // };
+
+  const openModal = () => {};
 
   const addImagesURL = (url) => {
     setImageUrls(url);
@@ -110,11 +119,15 @@ export default function CreateItinerary() {
                 <UploadWidget addImagesURL={addImagesURL} />
                 <div className="flex">
                   {imageUrls?.map((imageSrc) => (
-                    <img
-                      className=" mr-3 inline-block h-14 w-14 "
-                      src={imageSrc}
-                      alt="itinerarypics"
-                    />
+                    <div>
+                      <img
+                        className=" mr-3 inline-block h-14 w-14 "
+                        src={imageSrc}
+                        alt="itinerarypics"
+                        // onClick={openModal}
+                      />
+                      <ImageModal />
+                    </div>
                   ))}
                 </div>
               </div>

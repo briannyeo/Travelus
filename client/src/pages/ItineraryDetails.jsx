@@ -8,9 +8,9 @@ export default function ItineraryDetails() {
   const [comment, setComment] = useState("");
   const [allComments, setAllComments] = useState();
 
-  console.log("itinerary: ", itinerary);
-  console.log("comment: ", comment);
-  console.log("allComments:", allComments);
+  //console.log("itinerary: ", itinerary);
+  // console.log("comment: ", comment);
+  // console.log("allComments:", allComments);
 
   const { id } = useParams();
 
@@ -129,6 +129,15 @@ export default function ItineraryDetails() {
                 <div className="sm:col-span-2">
                   <dt className="text-sm font-medium text-gray-500 border-t pt-3 border-gray-200">
                     Attachments:
+                    <div className="flex">
+                      {itinerary?.itinerary.image.map((imageSrc) => (
+                        <img
+                          className=" mr-3 inline-block h-14 w-14 "
+                          src={imageSrc}
+                          alt="itinerarypics"
+                        />
+                      ))}
+                    </div>
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900"></dd>
                 </div>
