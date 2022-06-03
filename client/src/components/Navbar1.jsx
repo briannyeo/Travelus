@@ -6,7 +6,6 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { loginAtom } from "../App";
 import { useAtom } from "jotai";
 import travelus_logo from "../images/travelus_logo.png";
-import { set } from "react-hook-form";
 
 const navigation = [
   { name: "Itinerary Requests", href: "/request", current: false },
@@ -22,7 +21,7 @@ export default function Navbar1() {
   const [login, setLogin] = useAtom(loginAtom);
   const [user, setUser] = useState();
   const navigate = useNavigate();
-  console.log("user is", user);
+  //console.log("user is", user);
 
   //To retrieve user
   useEffect(() => {
