@@ -4,7 +4,7 @@
 Travelus is a web app built with PostgreSQL, Express, React and Node (PERN) stack that allows users to request or create itineraries for others. The community element allows for users to exchange and share their best itinerary plans through posts that even include images. It is styled with TailWind and hosted on Heroku. 
 
 ## Technologies Used
-PostgreSQL, Express, React, React-router, Prisma, react-hook-forms, Node, Tailwind, Jotai, Axios, Cloudinary and JWT Tokens.
+PostgreSQL, Express, React, React-router, Prisma, react-hook-forms, Node, Tailwind, Jotai, Axios, Cloudinary and JSON Web Tokens.
 
 Login Page:
 Login or Register to Travelus.
